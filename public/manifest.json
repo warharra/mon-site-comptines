@@ -1,0 +1,22 @@
+{
+  "name": "Comptines pour Enfants",
+  "short_name": "Comptines",
+  "theme_color": "#ff4081",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "./images/ludizio192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/ludizio512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
