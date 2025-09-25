@@ -34,7 +34,6 @@ export default function HomePageClient() {
   // Trier vidéos par date décroissante (et filtrer par langue active)
   const sortedVideos = [...videosData]
     .filter((video) => video.lang === language)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // 🔎 Filtrer selon recherche, lettre ou catégorie
   let filteredVideos = sortedVideos;
