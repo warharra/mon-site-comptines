@@ -65,7 +65,7 @@ export default function HomePageClient() {
   const displayedVideos = filteredVideos.slice(0, 28);
 
   return (
-    <div className="bg-[#E6FBFF] min-h-screen p-2">
+    <div className="bg-[#E6FBFF] min-h-screen p-4">
       {/* 🎨 Texte magique */}
       <div className="bg-gradient-to-r from-yellow-300 to-pink-300 text-center py-8 hidden md:block">
         <h2 className="text-3xl font-bold mb-2 text-white">
