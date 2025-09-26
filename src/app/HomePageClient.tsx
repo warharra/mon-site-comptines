@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import videosData from "../../videos.json";
 import { useLanguage } from "./LanguageContext";
 
 export default function HomePageClient() {
   const [category, setCategory] = useState("Comptines");
   const [search, setSearch] = useState("");
-  const { language } = useLanguage(); // ✅ récupère la langue globale
+  const { language } = useLanguage();
 
-  // Alphabet avec couleurs
   const alphabetColors = [
     "text-red-500",
     "text-white-200",
@@ -22,7 +22,6 @@ export default function HomePageClient() {
     "text-pink-500",
   ];
 
-  // Catégories disponibles
   const categories = [
     { name: "Populaire", emoji: "🔥", color: "bg-red-300" },
     { name: "Berceuse", emoji: "🌙", color: "bg-blue-300" },
@@ -31,21 +30,16 @@ export default function HomePageClient() {
     { name: "40 min Compilation", emoji: "🎬", color: "bg-purple-300" },
   ];
 
-  // Trier vidéos par date décroissante (et filtrer par langue active)
-  const sortedVideos = [...videosData]
-    .filter((video) => video.lang === language)
+  const sortedVideos = [...videosData].filter((video) => video.lang === language);
 
-  // 🔎 Filtrer selon recherche, lettre ou catégorie
   let filteredVideos = sortedVideos;
 
   if (search.trim() !== "") {
-    // Recherche par mot-clé
     filteredVideos = sortedVideos.filter((video) =>
       video.title.toLowerCase().includes(search.toLowerCase())
     );
   } else if (category !== "Comptines") {
     if (category.length === 1) {
-      // ✅ Filtre par première lettre du titre
       filteredVideos = sortedVideos.filter((video) =>
         video.title.toUpperCase().startsWith(category.toUpperCase())
       );
@@ -57,12 +51,10 @@ export default function HomePageClient() {
       );
     }
   } else {
-    // ⚡ Par défaut → vidéos populaires
     filteredVideos = sortedVideos.filter((video) => video.popular);
   }
 
-  // Limiter à 28 vidéos max
-  const displayedVideos = filteredVideos.slice(0, 28);
+  const displayedVideos = filteredVideos.slice(0, 50);
 
   return (
     <div className="bg-[#E6FBFF] min-h-screen p-4">
@@ -80,12 +72,12 @@ export default function HomePageClient() {
       {sortedVideos.length > 0 && (
         <div className="max-w-6xl mx-auto p-4 hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Vidéo réduite */}
             <div className="w-full">
               <iframe
                 width="100%"
                 height="260"
                 frameBorder="0"
+                loading="lazy" // ✅ Lazy loading iframe
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 className="rounded-lg"
                 src={`https://www.youtube.com/embed/${sortedVideos[0].youtubeId}`}
@@ -93,7 +85,6 @@ export default function HomePageClient() {
                 allowFullScreen
               />
             </div>
-            {/* Titre + description */}
             <div>
               <h2 className="text-xl font-bold text-[#ee6d6d] mb-2 line-clamp-2">
                 {sortedVideos[0].title}
@@ -111,7 +102,7 @@ export default function HomePageClient() {
           </div>
         </div>
       )}
-       
+
       {/* 📌 Catégories + recherche */}
       <div className="flex justify-center gap-4 p-4 flex-wrap">
         {categories.map((cat) => (
@@ -139,22 +130,23 @@ export default function HomePageClient() {
           className="border rounded px-3 py-1"
         />
       </div>
-         {/* 🔤 Alphabet coloré */}
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter, i) => (
-            <button
-              key={letter}
-              onClick={() =>
-                setCategory(category === letter ? "Comptines" : letter)
-              }
-              className={`font-bold text-lg transition-transform hover:scale-300 ${
-                alphabetColors[i % alphabetColors.length]
-              } ${category === letter ? "underline" : ""}`}
-            >
-              {letter}
-            </button>
-          ))}
-        </div>
+
+      {/* 🔤 Alphabet coloré */}
+      <div className="flex flex-wrap justify-center gap-2 mb-6">
+        {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter, i) => (
+          <button
+            key={letter}
+            onClick={() =>
+              setCategory(category === letter ? "Comptines" : letter)
+            }
+            className={`font-bold text-lg transition-transform hover:scale-110 ${
+              alphabetColors[i % alphabetColors.length]
+            } ${category === letter ? "underline" : ""}`}
+          >
+            {letter}
+          </button>
+        ))}
+      </div>
 
       {/* 🃏 Liste des vidéos */}
       <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-4 p-6 rounded-xl shadow-md">
@@ -164,9 +156,12 @@ export default function HomePageClient() {
             href={`/video/${video.slug}`}
             className="bg-white shadow-md rounded-xl overflow-hidden hover:scale-105 transition transform"
           >
-            <img
+            <Image
               src={video.thumbnail}
               alt={`Comptine ${video.title} pour enfants`}
+              width={400}
+              height={225}
+              loading="lazy" // ✅ Lazy loading image
               className="w-full h-40 object-cover rounded-lg"
             />
             <div className="p-2">

@@ -578,7 +578,7 @@
     "popular": true
   },
   {
-    "id": 54,
+    "id": 56,
     "date": "2025-09-24",
     "title": "Color Hats and Feelings Song 🎩🌈 Kids Rhyme",
     "slug": "color-hats and-feelings-song",
@@ -587,7 +587,9 @@
     "description": "✨ The Color Hats Song – Colors and Feelings for Kids | Nursery Rhyme ✨",
     "letter": "C",
     "categories": "",
-    "lang": "en"
+    "lang": "en",
+    "popular": true
+
 
   },
   {
@@ -603,7 +605,26 @@
       "Berceuse",
       "Populaire"
     ],
-    "lang": "en"
+    "lang": "en",
+    "popular": true
+
+
+  },
+    {
+    "id": 54,
+    "date": "2025-09-24",
+    "title": "Twinkle Twinkle Little Star ⭐",
+    "slug": "twinkle-twinkle-little-star",
+    "thumbnail": "/images/78.png",
+    "youtubeId": "nL6Kdnf0hXg",
+    "description": "⭐ Twinkle Twinkle Little Star ⭐ Nursery Rhyme for Kids | Songs for Toddlers ",
+    "letter": "T",
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ],
+    "lang": "en",
+    "popular": true
 
   },
     {
@@ -618,5 +639,69 @@
     "categories": "Histoire",
     "popular": true,
     "lang": "fr"
+  },
+    {
+    "title": "L’araignée Gipsy 🕷️",
+    "slug": "laraignee-gipsy",
+    "thumbnail": "/images/80.png",
+    "youtubeId": "E7j-C5vnDDE",
+    "date": "23/09/2025",
+    "description": "Rejoins les aventures amusantes des crocodiles et de leur amie, l’araignée Gipsy 🐊🕷️ ! ",
+    "id": 56,
+    "lang": "fr",
+    "letter": "A",
+    "popular": true,
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ]
+  },
+ 
+    {
+    "title": "Elle descend de la montagne à cheval 🐴",
+    "slug": "elle-descend-de-la-montagne-a-cheval",
+    "thumbnail": "/images/81.png",
+    "youtubeId": "LqP9XMujz20",
+    "date": "23/09/2025",
+    "description": "Les plus belles comptines pour bébé : IL ÉTAIT UNE BERGÈRE  chansons pour les petites",
+    "id": 57,
+    "lang": "fr",
+    "popular": true,
+    "letter": "E",
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ]
+  },
+   {
+    "title": "Il était une bergère 🐑",
+    "slug": "il-etait-une-bergere",
+    "thumbnail": "/images/39.png",
+    "youtubeId": "LqP9XMujz20",
+    "date": "23/09/2025",
+    "description": "Les plus belles comptines pour bébé : IL ÉTAIT UNE BERGÈRE  chansons pour les petites",
+    "id": 57,
+    "lang": "fr",
+    "popular": true,
+    "letter": "I",
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ]
+  },
+  {
+    "title": "30 min de comptines & Chansons populaires pour enfants",
+    "slug": "40-minutes-de-comptines",
+   "thumbnail": "/images/79.png",
+    "youtubeId": "WUDGp7Y0Oho",
+    "date": "23/09/2025",
+    "description": "🎶 Ah les crocodiles – Compilation 30 minutes de chansons et comptines pour enfants 🎶",
+    "letter": "C",
+    "id": 55,
+    "lang": "fr",
+    "categories": [
+      "40 min Compilation"
+    ],
+    "popular": true
   }
 ]

@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import videosDataRaw from "../../../../videos.json";
 import VideoPageClient from "./VideoPageClient";
 import { Video } from "../../types/video";

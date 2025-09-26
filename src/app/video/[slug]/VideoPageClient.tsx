@@ -1,11 +1,11 @@
 "use client";
 import { Video } from "../../types/video";
 import Link from "next/link";
+import Image from "next/image";
 import { ThumbsUp, Youtube } from "lucide-react";
 import videos from "../../../../videos.json";
 
 export default function VideoPageClient({ video }: { video: Video }) {
-  // Autres vidéos (exclure celle en cours)
   const otherVideos = videos.filter((v) => v.slug !== video.slug).slice(0, 20);
 
   return (
@@ -17,8 +17,10 @@ export default function VideoPageClient({ video }: { video: Video }) {
           <iframe
             width="100%"
             height="100%"
+            loading="lazy" // ✅ lazy loading iframe
             src={`https://www.youtube.com/embed/${video.youtubeId}`}
             title={video.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
         </div>
@@ -48,31 +50,32 @@ export default function VideoPageClient({ video }: { video: Video }) {
           <h2 className="text-lg font-bold text-[#ee6d6d] mb-2">
             📖 Description
           </h2>
-          <p className="text-gray-700 whitespace-pre-line">
-            {video.description}
-          </p>
+          <p className="text-gray-700 whitespace-pre-line">{video.description}</p>
         </div>
       </div>
 
       {/* Sidebar : Autres vidéos */}
       <aside className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-bold text-[#ee6d6d] mb-4">
-          🎬 Autres vidéos
-        </h2>
+        <h2 className="text-lg font-bold text-[#ee6d6d] mb-4">🎬 Autres vidéos</h2>
         <div className="space-y-4 max-h-[600px] overflow-y-auto">
           {otherVideos.map((v) => (
             <Link
               key={v.slug}
-              href={`/video/${v.slug}`} // ✅ URL avec slug
-              className="flex gap-3 items-center"
+              href={`/video/${v.slug}`}
+              className="flex gap-3 items-center hover:opacity-90 transition"
             >
-              <img
+              <Image
                 src={v.thumbnail}
                 alt={`Comptine ${v.title} pour enfants`}
-                className="w-24 h-16 object-cover rounded"
+                width={160} // ✅ tailles fixes
+                height={90}
+                loading="lazy"
+                className="rounded object-cover"
               />
               <div>
-                <p className="text-sm font-bold text-gray-800">{v.title}</p>
+                <p className="text-sm font-bold text-gray-800 line-clamp-2">
+                  {v.title}
+                </p>
               </div>
             </Link>
           ))}
