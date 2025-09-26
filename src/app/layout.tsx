@@ -5,6 +5,8 @@ import LanguageSelector from "./LanguageSelector";
 import Footer from "./Footer";
 import Link from "next/link";
 import { LanguageProvider } from "./LanguageContext";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://comptines-kids.fr"),
@@ -80,6 +82,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {/* FOOTER */}
           <Footer />
         </LanguageProvider>
+         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
