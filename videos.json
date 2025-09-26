@@ -44,19 +44,7 @@
       "Berceuse"
     ]
   },
-  {
-    "title": "Au clair de la lune 🌙",
-    "slug": "au-clair-de-la-lune",
-    "thumbnail": "/images/19.png",
-    "youtubeId": "KggT-9QU73s",
-    "date": "10/09/2025",
-    "description": "#berceusepourbébé \nBerceuse Bébé – Au clair de la lune Paroles :\n\nAu clair de la lune, mon ami Pierrot,\nPrête-moi ta plume, pour écrire un mot.\nMa chandelle est morte, je n'ai plus de feu.\nOuvre-moi ta porte, pour l'amour de Dieu.\n\nAu clair de la lune, Pierrot répondit :\n« Je n'ai pas de plume, je suis dans mon lit.\nVa chez la voisine, je crois qu'elle y est,\nCar dans sa cuisine, on bat le briquet. »\n\nAu clair de la lune, s'en fut Arlequin\nFrapper chez la brune. Elle répond soudain :\n« Qui frappe de la sorte ? Il dit à son tour :\n— Ouvrez votre porte, pour le Dieu d'Amour ! »\n\nAu clair de la lune, on n'y voit qu'un peu.\nOn chercha la plume, on chercha du feu.\nEn cherchant d'la sorte, je n'sais c'qu'on trouva.\nMais je sais qu'la porte sur eux se ferma.",
-    "letter": "A",
-    "categories": "Berceuse",
-    "id": 52,
-    "lang": "fr",
-    "popular": true
-  },
+ 
   {
     "title": "Lundi matin, l'empereur, le petit prince ",
     "slug": "lundi-matin-lempereur-le-petit-prince",
@@ -484,6 +472,23 @@
     ],
     "popular": true
   },
+   {
+    "id": 60,
+    "date": "2025-09-24",
+    "title": "Elle descend de la montagne à cheval 🐴",
+    "slug": "elle-descend-de-la-montagne-a-cheval",
+    "thumbnail": "/images/81.png",
+    "youtubeId": "LqP9XMujz20",
+    "description": "Les plus belles comptines pour bébé : IL ÉTAIT UNE BERGÈRE  chansons pour les petites",
+    "letter": "E",
+    "lang": "fr",
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ],
+    "popular": true
+  },
+  
   {
     "id": 35,
     "date": "2025-09-24",
@@ -592,6 +597,64 @@
     ],
     "popular": true
   },
+    {
+    "id": 2,
+    "date": "2025-09-24",
+    "title": "Le Loup et les 7 Sept Petits Chevreaux",
+    "slug": "le-loup-et-les-7-sept-petits-chevreaux",
+    "thumbnail": "/images/75.png",
+    "youtubeId": "WqXN1krGhVY",
+    "description": "La Cigale et la Fourmi – fable de La Fontaine mise en chanson. Un classique éducatif pour les enfants.",
+    "letter": "L",
+    "categories": "Histoire",
+    "popular": true,
+    "lang": "fr"
+  },
+    {
+    "title": "L’araignée Gipsy 🕷️",
+    "slug": "laraignee-gipsy",
+    "thumbnail": "/images/80.png",
+    "youtubeId": "E7j-C5vnDDE",
+    "date": "23/09/2025",
+    "description": "Rejoins les aventures amusantes des crocodiles et de leur amie, l’araignée Gipsy 🐊🕷️ ! ",
+    "id": 56,
+    "lang": "fr",
+    "letter": "A",
+    "popular": true,
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ]
+  },
+   {
+    "title": "Il était une bergère 🐑",
+    "slug": "il-etait-une-bergere",
+    "thumbnail": "/images/39.png",
+    "youtubeId": "LqP9XMujz20",
+    "date": "23/09/2025",
+    "description": "Les plus belles comptines pour bébé : IL ÉTAIT UNE BERGÈRE  chansons pour les petites",
+    "id": 57,
+    "lang": "fr",
+    "popular": true,
+    "letter": "I",
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ]
+  },
+   {
+    "title": "Au clair de la lune 🌙",
+    "slug": "au-clair-de-la-lune",
+    "thumbnail": "/images/19.png",
+    "youtubeId": "KggT-9QU73s",
+    "date": "10/09/2025",
+    "description": "#berceusepourbébé \nBerceuse Bébé – Au clair de la lune Paroles :\n\nAu clair de la lune, mon ami Pierrot,\nPrête-moi ta plume, pour écrire un mot.\nMa chandelle est morte, je n'ai plus de feu.\nOuvre-moi ta porte, pour l'amour de Dieu.\n\nAu clair de la lune, Pierrot répondit :\n« Je n'ai pas de plume, je suis dans mon lit.\nVa chez la voisine, je crois qu'elle y est,\nCar dans sa cuisine, on bat le briquet. »\n\nAu clair de la lune, s'en fut Arlequin\nFrapper chez la brune. Elle répond soudain :\n« Qui frappe de la sorte ? Il dit à son tour :\n— Ouvrez votre porte, pour le Dieu d'Amour ! »\n\nAu clair de la lune, on n'y voit qu'un peu.\nOn chercha la plume, on chercha du feu.\nEn cherchant d'la sorte, je n'sais c'qu'on trouva.\nMais je sais qu'la porte sur eux se ferma.",
+    "letter": "A",
+    "categories": "Berceuse",
+    "id": 52,
+    "lang": "fr",
+    "popular": true
+  },
   {
     "id": 56,
     "date": "2025-09-24",
@@ -641,66 +704,5 @@
     "lang": "en",
     "popular": true
 
-  },
-    {
-    "id": 2,
-    "date": "2025-09-24",
-    "title": "Le Loup et les 7 Sept Petits Chevreaux",
-    "slug": "le-loup-et-les-7-sept-petits-chevreaux",
-    "thumbnail": "/images/75.png",
-    "youtubeId": "WqXN1krGhVY",
-    "description": "La Cigale et la Fourmi – fable de La Fontaine mise en chanson. Un classique éducatif pour les enfants.",
-    "letter": "L",
-    "categories": "Histoire",
-    "popular": true,
-    "lang": "fr"
-  },
-    {
-    "title": "L’araignée Gipsy 🕷️",
-    "slug": "laraignee-gipsy",
-    "thumbnail": "/images/80.png",
-    "youtubeId": "E7j-C5vnDDE",
-    "date": "23/09/2025",
-    "description": "Rejoins les aventures amusantes des crocodiles et de leur amie, l’araignée Gipsy 🐊🕷️ ! ",
-    "id": 56,
-    "lang": "fr",
-    "letter": "A",
-    "popular": true,
-    "categories": [
-      "Berceuse",
-      "Populaire"
-    ]
-  },
-  {
-    "title": "Elle descend de la montagne à cheval 🐴",
-    "slug": "elle-descend-de-la-montagne-a-cheval",
-    "thumbnail": "/images/81.png",
-    "youtubeId": "LqP9XMujz20",
-    "date": "23/09/2025",
-    "description": "Les plus belles comptines pour bébé : IL ÉTAIT UNE BERGÈRE  chansons pour les petites",
-    "id": 57,
-    "lang": "fr",
-    "popular": true,
-    "letter": "E",
-    "categories": [
-      "Berceuse",
-      "Populaire"
-    ]
-  },
-   {
-    "title": "Il était une bergère 🐑",
-    "slug": "il-etait-une-bergere",
-    "thumbnail": "/images/39.png",
-    "youtubeId": "LqP9XMujz20",
-    "date": "23/09/2025",
-    "description": "Les plus belles comptines pour bébé : IL ÉTAIT UNE BERGÈRE  chansons pour les petites",
-    "id": 57,
-    "lang": "fr",
-    "popular": true,
-    "letter": "I",
-    "categories": [
-      "Berceuse",
-      "Populaire"
-    ]
   }
 ]
