@@ -74,7 +74,7 @@ export default function HomePageClient() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="w-full">
               <iframe
-                width="100%"
+                width="89%"
                 height="260"
                 frameBorder="0"
                 loading="lazy" // ✅ Lazy loading iframe
