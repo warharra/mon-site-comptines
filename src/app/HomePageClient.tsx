@@ -9,7 +9,7 @@ import { useLanguage } from "./LanguageContext";
 export default function HomePageClient() {
   const [category, setCategory] = useState("Comptines");
   const [search, setSearch] = useState("");
-  const { language } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   const alphabetColors = [
     "text-red-500",
@@ -23,11 +23,11 @@ export default function HomePageClient() {
   ];
 
   const categories = [
-    { name: "Populaire", emoji: "🔥", color: "bg-red-300" },
-    { name: "Berceuse", emoji: "🌙", color: "bg-blue-300" },
-    { name: "Histoire", emoji: "📖", color: "bg-green-300" },
-    { name: "Apprentissage", emoji: "📚", color: "bg-yellow-300" },
-    { name: "40 min Compilation", emoji: "🎬", color: "bg-purple-300" },
+    { name: "Populaire", nameEn: "Popular", emoji: "🔥", color: "bg-red-300" },
+    { name: "Berceuse", nameEn: "Lullaby", emoji: "🌙", color: "bg-blue-300" },
+    { name: "Histoire", nameEn: "Story", emoji: "📖", color: "bg-green-300" },
+    { name: "Apprentissage", nameEn: "Learning", emoji: "📚", color: "bg-yellow-300" },
+    { name: "40 min Compilation", nameEn: "40 min Compilation", emoji: "🎬", color: "bg-purple-300" },
   ];
 
   const sortedVideos = [...videosData].filter((video) => video.lang === language);
@@ -60,11 +60,19 @@ export default function HomePageClient() {
     <div className="bg-[#E6FBFF] min-h-screen p-4">
       {/* 🎨 Texte magique */}
       <div className="bg-gradient-to-r from-yellow-300 to-pink-300 text-center py-8 hidden md:block">
-        <h2 className="text-3xl font-bold mb-2 text-white">
-          🌞 Le monde magique des comptines 🌈
+        <h2
+          className="text-3xl font-bold mb-2 text-white cursor-pointer"
+          onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
+        >
+          {language === "fr" ? "🌞 Le monde magique des comptines 🌈" : "🌞 The magical world of nursery rhymes 🌈"}
         </h2>
-        <p className="mb-4 text-white font-bold">
-          Découvre nos chansons, berceuses et histoires
+        <p
+          className="mb-4 text-white font-bold cursor-pointer"
+          onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
+        >
+          {language === "fr"
+            ? "Découvre nos chansons, berceuses et histoires"
+            : "Discover our songs, lullabies and stories"}
         </p>
       </div>
 
@@ -77,7 +85,7 @@ export default function HomePageClient() {
                 width="89%"
                 height="260"
                 frameBorder="0"
-                loading="lazy" // ✅ Lazy loading iframe
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 className="rounded-lg"
                 src={`https://www.youtube.com/embed/${sortedVideos[0].youtubeId}`}
@@ -96,7 +104,7 @@ export default function HomePageClient() {
                 href={`/video/${sortedVideos[0].slug}`}
                 className="mt-3 inline-block bg-[#ee6d6d] text-white px-4 py-2 rounded-lg shadow hover:scale-105 transition"
               >
-                ▶️ Voir la vidéo
+                ▶️ {language === "fr" ? "Voir la vidéo" : "Watch video"}
               </Link>
             </div>
           </div>
@@ -108,9 +116,10 @@ export default function HomePageClient() {
         {categories.map((cat) => (
           <button
             key={cat.name}
-            onClick={() =>
-              setCategory(category === cat.name ? "Comptines" : cat.name)
-            }
+            onClick={() => {
+              setCategory(category === cat.name ? "Comptines" : cat.name);
+              setLanguage("en"); // Passe en anglais quand on clique
+            }}
             className={`
               ${cat.color} px-4 py-2 rounded-xl font-bold text-base
               transform transition duration-300
@@ -118,13 +127,13 @@ export default function HomePageClient() {
               ${category === cat.name ? "ring-4 ring-[#ee6d6d]" : ""}
             `}
           >
-            {cat.emoji} {cat.name}
+            {cat.emoji} {language === "fr" ? cat.name : cat.nameEn}
           </button>
         ))}
 
         <input
           type="text"
-          placeholder="🔍 Rechercher..."
+          placeholder={language === "fr" ? "🔍 Rechercher..." : "🔍 Search..."}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="border rounded px-3 py-1"
@@ -136,9 +145,7 @@ export default function HomePageClient() {
         {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter, i) => (
           <button
             key={letter}
-            onClick={() =>
-              setCategory(category === letter ? "Comptines" : letter)
-            }
+            onClick={() => setCategory(category === letter ? "Comptines" : letter)}
             className={`font-bold text-lg transition-transform hover:scale-110 ${
               alphabetColors[i % alphabetColors.length]
             } ${category === letter ? "underline" : ""}`}
@@ -161,7 +168,7 @@ export default function HomePageClient() {
               alt={`Comptine ${video.title} pour enfants`}
               width={400}
               height={225}
-              loading="lazy" // ✅ Lazy loading image
+              loading="lazy"
               className="w-full h-40 object-cover rounded-lg"
             />
             <div className="p-2">

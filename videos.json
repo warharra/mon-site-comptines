@@ -40,6 +40,7 @@
     "description": "Miaou, miaou, la nuit dernière Miaou, miaou, la nuit dernière J’entendais dans la gouttière J’entendais dans la gouttière Le chat de notre portière Le chat de notre portière",
     "letter": "M",
     "lang": "fr",
+    "popular": true,
     "categories": [
       "Berceuse"
     ]
@@ -54,6 +55,7 @@
     "description": "comptines #comptinespourbébé #comptinesenfants\n\nDécouvrez la joyeuse comptine « Lundi matin », une chanson drôle et rythmée qui amuse petits et grands ! 🎶👑\n\nSuivez l’histoire amusante de l’empereur, de sa femme et du petit prince, qui partent se promener mais… se retrouvent sans pantalon ! Un air répétitif et plein d’humour qui fait sourire à chaque couplet.\n\nParfaite pour apprendre en chantant, développer la mémoire et passer un moment de rire et de complicité en famille.\nParoles lundi matin l'empereur  :\n\nLundi matin, l'empereur, sa femme et le petit prince\nSont venus chez moi pour me serrer la pince\nComme j'étais parti, le petit prince a dit\n\"Puisque c'est ainsi nous reviendrons mardi\"",
     "letter": "L",
     "lang": "fr",
+    "popular": true,
     "categories": "Apprentissage",
     "id": 3
   },
@@ -66,6 +68,7 @@
     "description": "Suivez les aventures loufoques de Cadet Rousselle, un personnage un peu particulier avec ses trois maisons, ses trois chapeaux, et ses nombreuses petites manies. Une chanson pleine de malice qui fait rire tout en stimulant l’imagination.\n\nParfaite pour apprendre en chantant, développer la mémoire des enfants, et partager un bon moment joyeux en famille !\nParoles Cadet ROUSSEL  :\n\nCadet ROUSSEL a trois maisons \nQui n'ont ni poutres ni chevrons: \nC'est pour loger les hirondelles;\nQue direz-vous d'Cadet ROUSSEL Ah! Ah! Ah! mais vraiment,\nCadet ROUSSEL est bon enfant.\n\nCadet ROUSSEL a trois habits : (bis)\nDeux jaunes, l'autre en papier gris; (bis)\nIl met celui-là quand il gèle,\nOu quand il pleut ou quand il grêle; Ah ! Ah! Ah ! \n\nCadet ROUSSEL a trois chapeaux : \nLes deux ronds ne sont pas très beaux, \nEt le troisième est à deux cornes,\nDe sa tête il a pris la forme : Ah ! Ah ! Ah ! \n\nCadet ROUSSEL a trois beaux yeux (bis)\nL'un r'garde à Caen, l'autre à Bayeux (bis)\nComme il n'a pas la vue bien nette,\nLe troisième c'est sa lorgnette : Ah ! Ah ! Ah ! \n\nCadet ROUSSEL a une épée \nTrès longue mais toute rouillée \nAussi chacun de dire d'elle\nQu'ell'ne fait peur qu'aux hirondelles Ah! Ah! Ah! \n\nCadet ROUSSEL a trois souliers\nIl en met deux dans ses deux pieds ; \nLe troisième étant pour bancroche,\nQuand il le met c'est dans sa poche : Ah ! Ah! Ah! \n\nCadet ROUSSEL a trois cheveux : (bis)\nUn pour chaqu'face, un pour la queue, (bis)\nPourtant parfois avec adresse\nIl les met tous les trois en tresse : Ah ! Ah ! Ah ! \n\nCadet ROUSSEL a trois garçons \nL'un est voleur, l'autre est fripon, \nLe troisième est un peu ficelle\nIl ressemble à Cadet ROUSSEL Ah! Ah! Ah! mais vraiment\nCadet ROUSSEL est bon enfant.\n\nCadet ROUSSEL a trois gros chiens: \nL'un court aux lièvres, l'autre aux lapins, \nL'troisième s'enfuit quand on l'appelle\nComm' le chien de Jean de Nivelle : Ah ! Ah ! Ah ! \n\nCadet ROUSSEL a trois beaux chats, \nQui n'attrapent jamais les rats, \nLe troisièm' n'a pas de prunelles,\nIl monte au grenier sans chandelle : Ah ! Ah ! Ah ! \n\nCadet ROUSSEL a marié (bis)\nSes trois filles dans trois quartiers ; (bis)\nLes deux premières ne sont pas belles\nLa troisième n'a pas de cervelle : Ah ! Ah ! Ah ! \n\nCadet ROUSSEL a trois deniers, (bis)\nC'est pour payer ses créanciers ; (bis)\nQuand il a montré ses ressources,\nIl les remet dedans sa bourse : Ah! Ah! Ah! \n\nCadet ROUSSEL s'est fait acteur, (bis)\nComme CHENIER s'est fait auteur ; (bis)\nAu café quand il joue son rôle,\nLes aveugles le trouvent drôle : Ah! Ah! Ah! \n\nCadet ROUSSEL ne mourra pas\nCar avant de sauter le pas (bis)\nOn dit qu'il apprend l'orthographe\nPour faire lui-même son épitaphe :\nAh! Ah! Ah ! mais vraiment Cadet ROUSSEL est bon enfant.",
     "letter": "C",
     "id": 4,
+    "popular": true,
     "lang": "fr",
     "categories": [
       "Berceuse"
@@ -106,6 +109,7 @@
     "youtubeId": "Vs8V7zUxbC0",
     "description": "Pomme, pêche, poire, abricot – chanson éducative et amusante pour enfants, parfaite pour apprendre en chantant.",
     "letter": "P",
+    "popular": true,
     "lang": "fr",
     "categories": [
       "Apprentissage"
@@ -188,7 +192,8 @@
     "description": "1, 2, 3 nous irons au bois – comptine traditionnelle française pour enfants, idéale pour apprendre en chantant.",
     "letter": "N",
     "lang": "fr",
-    "categories": "Apprentissage"
+    "categories": "Apprentissage",
+    "popular": true
   },
   {
     "id": 14,
@@ -371,11 +376,13 @@
     "description": " Bienvenue sur Ludizio, la chaîne où on apprend en rigolant ! 🎉",
     "letter": "C",
     "lang": "fr",
+    "popular": true,
     "categories": [
       "40 min Compilation",
       "Populaire"
     ]
   },
+  
   {
     "id": 28,
     "date": "2025-09-24",
@@ -696,6 +703,23 @@
     "thumbnail": "/images/78.png",
     "youtubeId": "WpQdJDYUFhM",
     "description": "⭐ Twinkle Twinkle Little Star ⭐ Nursery Rhyme for Kids | Songs for Toddlers ",
+    "letter": "T",
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ],
+    "lang": "en",
+    "popular": true
+
+  },
+   {
+    "id": 54,
+    "date": "2025-09-24",
+    "title": "Old Macdonald Had A Farm",
+    "slug": "old_macdonald_had_a_farm",
+    "thumbnail": "/images/69.png",
+    "youtubeId": "ar9Zlr3_aNc",
+    "description": "In this video, we're sharing some of our favorite old MacDonald Had a Farm, farm songs and preschool rhymes.   ",
     "letter": "T",
     "categories": [
       "Berceuse",
