@@ -25,11 +25,15 @@ export default function Header() {
       </div>
 
       {/* Titre centré */}
-      <div className="absolute left-1/2 transform -translate-x-1/2">
-        <Link href="/" className="text-2xl font-bold text-pink-600 hover:scale-110 transition-transform">
+      <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:block">
+        <Link
+          href="/"
+          className="text-2xl font-bold text-pink-600 hover:scale-110 transition-transform"
+        >
           {texts[language].titre}
         </Link>
       </div>
+
 
       {/* Sélecteur de langue à droite */}
       <nav>
