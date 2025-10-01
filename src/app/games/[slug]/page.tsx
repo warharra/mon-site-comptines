@@ -4,14 +4,8 @@ import { game } from "../../types/games";
 
 const gamesData: game[] = gamesDataRaw as game[];
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
 // ✅ Page affichage jeu
-export default function Page({ params }: PageProps) {
+export default function Page({ params }: { params: { slug: string } }) {
   const game = gamesData.find((g) => g.slug === params.slug);
 
   if (!game) {
