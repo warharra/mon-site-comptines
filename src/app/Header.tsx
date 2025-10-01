@@ -19,7 +19,7 @@ export default function Header() {
         <Link href="/" className="text-1xl font-bold text-sky-700 hover:text-pink-600 transition">
           {texts[language].comptines}
         </Link>
-        <Link href="/jeux" className="text-1xl font-bold text-sky-700 hover:text-pink-600 transition">
+        <Link href="/page_games" className="text-1xl font-bold text-sky-700 hover:text-pink-600 transition">
           {texts[language].jeux}
         </Link>
       </div>

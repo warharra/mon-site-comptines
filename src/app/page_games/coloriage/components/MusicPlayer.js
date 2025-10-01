@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 
 const MUSIC_SRC =
-  "https://cdn.pixabay.com/audio/2022/12/19/audio_12a2c3e1e8.mp3"; // Musique douce libre
+  "./low-energy-197725.mp3"; // Musique douce libre
 
 export default function MusicPlayer() {
   const audioRef = useRef();

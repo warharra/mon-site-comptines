@@ -58,9 +58,9 @@ export default function VideoPageClient({ video }: { video: Video }) {
       <aside className="bg-white rounded-lg shadow p-6">
         <h2 className="text-lg font-bold text-[#ee6d6d] mb-4">🎬 Autres vidéos</h2>
         <div className="space-y-4 max-h-[600px] overflow-y-auto">
-          {otherVideos.map((v) => (
+          {otherVideos.map((v, i) => (
             <Link
-              key={v.slug}
+              key={`${v.slug}-${i}`}
               href={`/video/${v.slug}`}
               className="flex gap-3 items-center hover:opacity-90 transition"
             >
