@@ -1,0 +1,15 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Custom star animation for effects */
+.star-pop {
+  animation: star-pop 0.6s cubic-bezier(.45,1.46,.53,-0.46);
+}
+@keyframes star-pop {
+  0% { opacity: 0; transform: scale(0.4);}
+  60% { opacity: 1; transform: scale(1.2);}
+  100% { opacity: 0; transform: scale(0.8);}
+}

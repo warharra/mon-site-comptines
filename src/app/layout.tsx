@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "./globals.css";
-import LanguageSelector from "./LanguageSelector";
 import Footer from "./Footer";
-import Link from "next/link";
+import Header from "./Header";
 import { LanguageProvider } from "./LanguageContext";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://comptines-kids.fr"),
@@ -51,8 +52,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
+export default function RootLayout({ children }: { children: ReactNode }) {  return (
     <html lang="fr">
       <head>
         <link rel="manifest" href="/manifest.json" />
@@ -60,25 +60,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className="bg-yellow-300 min-h-screen">
         <LanguageProvider>
-          {/* HEADER */}
-          <header className="bg-white shadow-md py-4 px-6 flex items-center justify-between">
-            {/* Titre cliquable */}
-            <Link
-              href="/"
-              className="text-2xl font-bold text-pink-600 hover:scale-110 transition-transform"
-            >
-              🎵 Comptines de LUDIZIO
-            </Link>
-
-            {/* Liste déroulante Langues */}
-            <nav>
-              <LanguageSelector />
-            </nav>
-          </header>
-
+          {/* HEADER */}  
+          <Header />
           {/* CONTENU */}
           <main className="p-6">{children}</main>
-
           {/* FOOTER */}
           <Footer />
         </LanguageProvider>

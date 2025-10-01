@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Memory Game - Responsive</title>
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="controls">
+    <button id="level1">Niveau 1</button>
+    <button id="level2">Niveau 2</button>
+    <button id="level3">Niveau 3</button>
+    <select id="themeSelect">
+      <option value="animaux">Animaux</option>
+      <option value="fruits">Fruits</option>
+      <option value="legumes">Légumes</option>
+    </select>
+  </div>
+
+  <div id="txtInstructions">Clique sur une carte !</div>
+  <div id="txtCounter">Paires à trouver : 6</div>
+
+  <div id="game-wrapper">
+    <div id="game-container" aria-live="polite"></div>
+  </div>
+
+  <div id="txtVictory" class="hidden">Bravo !! Tu as trouvé toutes les cartes ! 🎉</div>
+  <canvas id="confetti" class="hidden"></canvas>
+
+  <!-- Sons (laisser si présents) -->
+  <audio id="sndPop" src="sounds/pop.mp3"></audio>
+  <audio id="sndDing" src="sounds/ding.mp3"></audio>
+  <audio id="sndApplause" src="sounds/applause.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

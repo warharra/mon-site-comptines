@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Puzzle Requin - responsive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    :root{ --accent:#6d8cff; --yellow:#ffd82f; --bg1:linear-gradient(135deg,#f7eaff 0%,#fff8d6 100%);} 
+    *{box-sizing:border-box}
+    body{
+      font-family:'Fredoka One', cursive;
+      margin:0;
+      background:var(--bg1);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    main{max-width:1100px;margin:18px auto;padding:18px}
+    h1{text-align:center;color:var(--yellow);text-shadow:2px 2px 0 #6d8cff;margin:6px 0 18px}
+
+    /* layout */
+    #puzzle-wrapper{display:flex;gap:20px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+
+    .panel{background:rgba(255,255,255,0.6);border-radius:18px;padding:16px;box-shadow:0 2px 20px #ffd6f6aa;min-width:260px;max-width:420px}
+    .panel h2{text-align:center;color:var(--accent);font-size:1.1rem;margin:6px 0 12px}
+
+    /* pieces zone */
+    #pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;justify-items:center;align-items:center;background:#fff;padding:12px;border-radius:10px}
+    .tile{width:84px;height:84px;background:#fff8d6;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px #ffd82f22;cursor:grab;overflow:hidden;position:relative}
+    .tile img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+    .tile.dragging{opacity:0.65;transform:scale(1.03);z-index:1000}
+
+    #reset-btn{display:block;margin:10px auto 0;background:var(--yellow);color:var(--accent);border:none;border-radius:20px;padding:10px 18px;font-size:1.05rem;cursor:pointer;box-shadow:0 2px 8px #ffd6f655}
+    #reset-btn:hover{background:var(--accent);color:var(--yellow)}
+
+    /* board */
+    #board-wrapper{position:relative;display:block;max-width:360px;width:100%}
+    #board-bg{width:100%;height:auto;display:block;border-radius:12px;opacity:0.42;filter:grayscale(10%) brightness(1.02)}
+    #board{position:absolute;top:0;left:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);width:100%;height:100%;gap:0}
+
+    .dropzone{border:1px dashed rgba(255,216,47,0.45);background:transparent;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .dropzone img{width:100%;height:100%;object-fit:cover;display:block}
+    .dropzone.filled{border:none;box-shadow:none}
+
+    .dropzone.magnet{animation:magnet .6s}
+    @keyframes magnet{0%{transform:scale(.95);box-shadow:0 0 0 #bdf5d2}40%{transform:scale(1.06);box-shadow:0 0 18px #48a680}100%{transform:scale(1);box-shadow:0 0 0 #bdf5d2}}
+
+    /* floating clone during touch drag */
+    .float-tile{position:fixed;width:84px;height:84px;border-radius:8px;z-index:9999;pointer-events:none;box-shadow:0 6px 24px rgba(0,0,0,0.2);transform:translate(-50%,-50%)}
+    .float-tile img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* victory */
+    #victory{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.85);display:flex;align-items:center;justify-content:center;z-index:200;border-radius:12px;animation:fadeIn 0.9s}
+    .victory-msg{font-size:2rem;color:#48a680;background:#fff8d6;border-radius:12px;padding:26px 36px;box-shadow:0 4px 32px rgba(0,0,0,0.08);animation:popBravo 0.9s}
+    @keyframes popBravo{0%{transform:scale(.8)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    /* responsive */
+    @media (max-width:900px){
+      #puzzle-wrapper{flex-direction:column;align-items:center}
+      .panel{max-width:360px;width:92%}
+      #pieces{grid-template-columns:repeat(3,1fr)}
+      .tile, .float-tile{width:64px;height:64px}
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Puzzle Requin 🧩</h1>
+    <div id="puzzle-wrapper">
+
+      <div class="panel" id="pieces-zone">
+        <h2>Pièces à placer</h2>
+        <div id="pieces"></div>
+        <button id="reset-btn">🔄 Recommencer</button>
+      </div>
+
+      <div class="panel" id="board-zone">
+        <h2>Puzzle</h2>
+        <div id="board-wrapper">
+          <img id="board-bg" src="images/poussin.png" alt="fond puzzle">
+          <div id="board"></div>
+        </div>
+        <div id="victory" style="display:none;">
+          <div class="victory-msg">Bravo 🎉</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // ---- CONFIG ----
+    const IMG_SRC = "images/poussin.png";
+    const ROWS = 3, COLS = 3;
+
+    // ---- STATE ----
+    let pieces = []; // {id, img, correctPos:[x,y]}
+    let pieceOrder = [];
+    let placed = [];
+    let draggedId = null; // for desktop drag
+
+    // pointer/touch drag state
+    let touchDrag = null; // {piece, clone}
+
+    // ---- INIT ----
+    document.addEventListener('DOMContentLoaded', () => {
+      initUI();
+      createPuzzle();
+    });
+
+    function initUI(){
+      document.getElementById('reset-btn').addEventListener('click', createPuzzle);
+    }
+
+    async function createPuzzle(){
+      pieces = [];
+      pieceOrder = [];
+      placed = Array(ROWS*COLS).fill(null);
+      document.getElementById('victory').style.display = 'none';
+
+      // Load image to get dimensions then split
+      const img = new Image();
+      img.src = IMG_SRC;
+      await img.decode();
+      const imgPieces = await splitImageFromImage(img, ROWS, COLS);
+      pieces = imgPieces;
+      pieceOrder = shuffle([...pieces]);
+
+      // set board bg and size
+      const boardBg = document.getElementById('board-bg');
+      boardBg.src = IMG_SRC;
+      await boardBg.decode();
+      adjustBoardSize();
+
+      renderPieces();
+      renderBoard();
+    }
+
+    // Split using an already decoded Image to avoid double load
+    function splitImageFromImage(img, rows, cols){
+      const w = img.naturalWidth, h = img.naturalHeight;
+      const arr = [];
+      for(let y=0;y<rows;y++){
+        for(let x=0;x<cols;x++){
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.floor(w/cols);
+          canvas.height = Math.floor(h/rows);
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, x*(w/cols), y*(h/rows), w/cols, h/rows, 0, 0, canvas.width, canvas.height);
+          arr.push({id:`${x},${y}`, img:canvas.toDataURL(), correctPos:[x,y]});
+        }
+      }
+      return Promise.resolve(arr);
+    }
+
+    function shuffle(a){let arr=a.slice();for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
+
+    function adjustBoardSize(){
+      const boardBg = document.getElementById('board-bg');
+      const board = document.getElementById('board');
+      // set board element to match image rendered size
+      board.style.width = boardBg.clientWidth + 'px';
+      board.style.height = boardBg.clientHeight + 'px';
+    }
+
+    // ---- RENDER PIECES ----
+    function renderPieces(){
+      const zone = document.getElementById('pieces');
+      zone.innerHTML = '';
+      pieceOrder.forEach(piece => {
+        if (placed.find(p=>p && p.id === piece.id)) return;
+        const div = document.createElement('div');
+        div.className = 'tile';
+        div.draggable = true; // desktop
+        div.dataset.id = piece.id;
+        div.innerHTML = `<img src="${piece.img}" alt="">`;
+
+        // desktop drag events
+        div.addEventListener('dragstart', (e)=>{
+          draggedId = piece.id;
+          div.classList.add('dragging');
+          try{ e.dataTransfer.setData('text/plain', piece.id); }catch(_){}
+        });
+        div.addEventListener('dragend', ()=>{ draggedId = null; div.classList.remove('dragging'); });
+
+        // pointer/touch for mobile
+        div.addEventListener('pointerdown', (e)=>onPointerStart(e, piece, div));
+
+        zone.appendChild(div);
+      });
+    }
+
+    // ---- RENDER BOARD ----
+    function renderBoard(){
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+      board.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+      board.style.gridTemplateRows = `repeat(${ROWS}, 1fr)`;
+
+      for(let y=0;y<ROWS;y++){
+        for(let x=0;x<COLS;x++){
+          const idx = y*COLS + x;
+          const dz = document.createElement('div');
+          dz.className = 'dropzone';
+          dz.dataset.pos = `${x},${y}`;
+
+          dz.addEventListener('dragover', (e)=>{ e.preventDefault(); dz.style.background = '#bdf5d2'; });
+          dz.addEventListener('dragleave', ()=>{ dz.style.background = 'transparent'; });
+          dz.addEventListener('drop', (e)=>{
+            e.preventDefault(); dz.style.background = 'transparent';
+            const id = draggedId || (e.dataTransfer && e.dataTransfer.getData('text/plain'));
+            if (!id) return;
+            const piece = pieces.find(p=>p.id===id);
+            if (!piece) return;
+            handleDrop(piece, dz);
+          });
+
+          if (placed[idx]){
+            dz.classList.add('filled');
+            const img = document.createElement('img');
+            img.src = placed[idx].img;
+            dz.appendChild(img);
+          }
+          board.appendChild(dz);
+        }
+      }
+    }
+
+    // ---- DROP HANDLER ----
+    function handleDrop(piece, dz){
+      const pos = dz.dataset.pos; // "x,y"
+      if (piece.correctPos.join(',') === pos){
+        dz.classList.add('magnet');
+        setTimeout(()=>dz.classList.remove('magnet'), 600);
+        const [x,y] = pos.split(',').map(Number);
+        placed[y*COLS + x] = piece;
+        pieceOrder = pieceOrder.filter(p=>p.id!==piece.id);
+        renderPieces();
+        renderBoard();
+        checkVictory();
+      } else {
+        dz.style.borderColor = '#ff7a7a';
+        dz.style.boxShadow = '0 0 12px rgba(255,0,0,0.12)';
+        setTimeout(()=>{ dz.style.borderColor = 'rgba(255,216,47,0.45)'; dz.style.boxShadow='none'; }, 450);
+      }
+    }
+
+    // ---- TOUCH / POINTER DRAGGING ----
+    function onPointerStart(e, piece, tileEl){
+      // Use pointer-type touch or if device has touch points - to avoid interfering with mouse drag
+      const mustUsePointer = (e.pointerType === 'touch') || (navigator.maxTouchPoints && navigator.maxTouchPoints>0);
+      if (!mustUsePointer) return; // let native drag handle mouse
+
+      e.preventDefault();
+
+      // create floating clone
+      const rect = tileEl.getBoundingClientRect();
+      const clone = document.createElement('div');
+      clone.className = 'float-tile';
+      const img = document.createElement('img'); img.src = piece.img;
+      clone.appendChild(img);
+      document.body.appendChild(clone);
+
+      const offsetX = e.clientX - (rect.left + rect.width/2);
+      const offsetY = e.clientY - (rect.top + rect.height/2);
+
+      function moveAt(clientX, clientY){
+        clone.style.left = clientX - offsetX + 'px';
+        clone.style.top = clientY - offsetY + 'px';
+      }
+      moveAt(e.clientX, e.clientY);
+
+      function onMove(ev){ moveAt(ev.clientX, ev.clientY); }
+      function onUp(ev){
+        document.removeEventListener('pointermove', onMove);
+        document.removeEventListener('pointerup', onUp);
+        // check drop target
+        const el = document.elementFromPoint(ev.clientX, ev.clientY);
+        const dz = el ? el.closest('.dropzone') : null;
+        if (dz) handleDrop(piece, dz);
+        // cleanup clone
+        clone.remove();
+      }
+
+      document.addEventListener('pointermove', onMove);
+      document.addEventListener('pointerup', onUp);
+    }
+
+    // ---- VICTORY ----
+    function checkVictory(){
+      if (placed.every(p=>p!==null)){
+        const v = document.getElementById('victory');
+        v.style.display = '';
+        setTimeout(()=>{ v.style.display = 'none'; }, 2400);
+      }
+    }
+
+    // make sure board resizes if window changes
+    window.addEventListener('resize', ()=>{ setTimeout(adjustBoardSize, 60); });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+/* Reset / base */
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; padding:0; }
+body {
+  font-family: 'Fredoka One', cursive;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  background: linear-gradient(180deg,#fff7f1 0%, #f7fbff 100%);
+  color:#222;
+}
+
+/* Controls & texts */
+#controls { margin-top:10px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+#txtInstructions, #txtCounter {
+  color:#ff6f61;
+  text-align:center;
+  font-size: clamp(14px, 2.8vw, 20px);
+}
+#txtVictory { color:#43a047; font-size: clamp(16px,4vw,26px); text-align:center; margin-bottom:4px; }
+.hidden { display:none !important; }
+
+/* Wrapper used to center horizontally */
+#game-wrapper { width: 100%; display:flex; justify-content:center; }
+
+/* Game container : no fixed number of columns here (we set them in JS)
+   It *does* have a maximum width to keep things centered on very large screens.
+   Also keep a top margin so header height is included in layout. */
+#game-container {
+  width: min(1100px, 94vw);
+  /* height will be set in JS to the available vertical space (px) */
+  display:grid;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  justify-content: center; /* centre si il y a espace */
+  align-content: center;
+  overflow: hidden;
+  /* CSS variable used by JS to set card size for font scaling */
+  --card-size: 80px;
+}
+
+/* Card: full-size of its grid cell */
+.card {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative; /* pour faces absolues */
+  background: linear-gradient(135deg, #ffe8d6 60%, #e4c1f9 100%);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Faces (recto/verso) */
+.card .front, .card .back {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  backface-visibility:hidden;
+  transition: transform .35s cubic-bezier(.8,2,0,.9);
+  font-size: calc(var(--card-size) * 0.45); /* s'adapte à la taille calculée */
+}
+
+/* back = face cachée, front = contenu */
+.card .back {
+  background:#ffb4a2;
+  color:#fff;
+  transform: rotateY(0deg);
+  z-index:2;
+}
+.card .front {
+  background:#f9fafb;
+  color:#222;
+  transform: rotateY(180deg);
+  z-index:1;
+}
+
+/* flipped / matched */
+.card.flipped .front { transform: rotateY(0deg); z-index:2; }
+.card.flipped .back  { transform: rotateY(180deg); z-index:1; }
+.card.matched { animation: elasticZoom .45s; box-shadow: 0 0 20px 6px #a3e635; }
+
+@keyframes elasticZoom {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.12); }
+  60% { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
+/* Confetti */
+#confetti { position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:100; }
+
+/* small screens tweaks */
+@media (max-width:420px) {
+  #game-container { gap:8px; padding:8px; }
+  #txtInstructions,#txtCounter { font-size:14px; }
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "title": "Puzzle de poussin",
+    "slug": "puzzle",
+   "thumbnail": "/images/g1.png",
+    "description": "Assemble les pieces🧩 et découvre leur nom !",
+    "categories": ["Puzzle"],
+    "popular": true,
+    "lang": ["fr", "en"],
+    "gamePath": "/games/puzzle/index.html"
+  },
+    {
+    "id": 2,
+    "title": "Memo",
+    "slug": "memo",
+   "thumbnail": "/images/memo.png",
+    "description": "Jeux de mémoire",
+    "categories": ["Mémoire"],
+    "popular": true,
+    "lang": "fr",
+    "gamePath": "/games/memo/index.html"
+  },
+   {
+    "id": 3,
+    "title": "Coloriage",
+    "slug": "coloriage",
+   "thumbnail": "/images/coloriage.png",
+    "description": "Jeux de coloriage",
+    "categories": ["Coloriage"],
+    "popular": true,
+    "lang": "fr",
+    "gamePath": "/games/coloriage/index.html"
+    
+  },
+   {
+    "id": 4,
+    "title": "Puzzle requin",
+    "slug": "puzzle_1",
+   "thumbnail": "/images/puzzle_requin.png",
+    "description": "Assemble les pieces 🧩 et découvre leur nom !",
+    "categories": ["Puzzle"],
+    "popular": true,
+    "lang": "fr",
+    "gamePath": "/games/puzzle_1/index.html"
+    
+  }
+]

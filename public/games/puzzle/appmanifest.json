@@ -1,0 +1,42 @@
+{
+	"name": "Nouveau projet",
+	"short_name": "Nouveau projet",
+	"description": "",
+	"start_url": "index.html",
+	"display": "fullscreen",
+	"orientation": "landscape",
+	"background_color": "#ffffff",
+	"icons": [
+		{
+			"src": "",
+			"sizes": "16x16",
+			"type": "image/png"
+		},
+		{
+			"src": "",
+			"sizes": "32x32",
+			"type": "image/png"
+		},
+		{
+			"src": "",
+			"sizes": "64x64",
+			"type": "image/png"
+		},
+		{
+			"src": "",
+			"sizes": "128x128",
+			"type": "image/png"
+		},
+		{
+			"src": "",
+			"sizes": "256x256",
+			"type": "image/png"
+		},
+		{
+			"src": "images/ludizio512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"screenshots": []
+}

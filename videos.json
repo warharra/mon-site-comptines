@@ -30,6 +30,23 @@
     ],
     "popular": true
   },
+  
+    {
+    "title": "Les Petits Poissons 🐟",
+    "slug": "les_petits_poissons",
+    "thumbnail": "/images/83.png",
+    "youtubeId": "MphNfsk4vJE",
+    "date": "10/09/2025",
+    "description": "Les Petits Poissons, une comptine joyeuse et rigolote pour petits et grands ! 🐟🐠",
+    "letter": "P",
+     "categories": [
+      "Berceuse",
+      "Populaire"
+    ],
+    "id": 68,
+    "lang": "fr",
+    "popular": true
+  },
   {
     "id": 37,
     "title": "Miaou miaou la nuit dernière 🐈 chat",
@@ -265,7 +282,7 @@
     "date": "2025-09-24",
     "title": "Le Lièvre et la Tortue",
     "slug": "le-lievre-et-la-tortue",
-    "thumbnail": "/images/54.png",
+    "thumbnail": "/images/82.png",
     "youtubeId": "zbn3Cr6TADs",
     "description": "Le Lièvre et la Tortue – fable en chanson pour enfants qui apprend la persévérance avec une morale amusante.",
     "letter": "L",
@@ -624,7 +641,7 @@
     "youtubeId": "E7j-C5vnDDE",
     "date": "23/09/2025",
     "description": "Rejoins les aventures amusantes des crocodiles et de leur amie, l’araignée Gipsy 🐊🕷️ ! ",
-    "id": 56,
+    "id": 61,
     "lang": "fr",
     "letter": "A",
     "popular": true,
@@ -666,19 +683,22 @@
     "id": 56,
     "date": "2025-09-24",
     "title": "Color Hats and Feelings Song 🎩🌈 Kids Rhyme",
-    "slug": "color-hats and-feelings-song",
+    "slug": "color-hats-and-feelings-song",
     "thumbnail": "/images/76.png",
     "youtubeId": "m_6pvHq7wEA",
     "description": "✨ The Color Hats Song – Colors and Feelings for Kids | Nursery Rhyme ✨",
     "letter": "C",
-    "categories": "",
+    "categories": [
+      "Berceuse",
+      "Populaire"
+    ],
     "lang": "en",
     "popular": true
 
 
   },
   {
-    "id": 55,
+    "id": 62,
     "date": "2025-09-24",
     "title": "Apple Round Apple Red 🍎",
     "slug": "apple-round-apple-red",
@@ -696,7 +716,7 @@
 
   },
     {
-    "id": 54,
+    "id": 64,
     "date": "2025-09-24",
     "title": "Twinkle Twinkle Little Star ⭐",
     "slug": "twinkle-twinkle-little-star",
@@ -713,19 +733,35 @@
 
   },
    {
-    "id": 54,
+    "id": 65,
     "date": "2025-09-24",
     "title": "Old Macdonald Had A Farm",
     "slug": "old_macdonald_had_a_farm",
-    "thumbnail": "/images/69.png",
-    "youtubeId": "ar9Zlr3_aNc",
+    "thumbnail": "/images/84.png",
+    "youtubeId": "Pi4ItgKql2g",
     "description": "In this video, we're sharing some of our favorite old MacDonald Had a Farm, farm songs and preschool rhymes.   ",
-    "letter": "T",
+    "letter": "O",
+    "lang": "en",
     "categories": [
       "Berceuse",
       "Populaire"
     ],
+    "popular": true
+
+  },
+   {
+    "id": 66,
+    "date": "2025-09-25",
+    "title": "The Tortoise and the Hare",
+    "slug": "the_tortoise_and_the_hare",
+    "thumbnail": "/images/54.png",
+    "youtubeId": "DmnsNhhTqJo",
+    "description": "The Tortoise and the Hare | English Fairy Tales And Stories",
+    "letter": "L",
     "lang": "en",
+    "categories": [
+      "Histoire"
+    ],
     "popular": true
 
   }
