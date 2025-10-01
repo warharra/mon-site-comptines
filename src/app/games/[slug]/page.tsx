@@ -1,15 +1,14 @@
 import gamesDataRaw from "../../../../games.json";
-import GamePageClient from "./GamePageClient"; // 👉 crée un composant comme VideoPageClient mais pour jeux
-import { game } from "../../types/games"; // 👉 crée un type Game comme ton type Video
+import GamePageClient from "./GamePageClient"; 
+import { game } from "../../types/games"; 
 
-// ✅ On caste le JSON pour qu’il corresponde bien au type Game
 const gamesData: game[] = gamesDataRaw as game[];
 
-type PageProps = {
+interface PageProps {
   params: {
     slug: string;
   };
-};
+}
 
 // ✅ Page affichage jeu
 export default function Page({ params }: PageProps) {
@@ -23,7 +22,9 @@ export default function Page({ params }: PageProps) {
 }
 
 // ✅ SEO dynamique
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(
+  { params }: { params: { slug: string } }
+) {
   const game = gamesData.find((g) => g.slug === params.slug);
 
   if (!game) {
