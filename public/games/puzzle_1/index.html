@@ -19,9 +19,9 @@
     h1{text-align:center;color:var(--yellow);text-shadow:2px 2px 0 #6d8cff;margin:6px 0 18px}
 
     /* layout */
-    #puzzle-wrapper{display:flex;gap:20px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+    #puzzle-wrapper{display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap}
 
-    .panel{background:rgba(255,255,255,0.6);border-radius:18px;padding:16px;box-shadow:0 2px 20px #ffd6f6aa;min-width:260px;max-width:420px}
+    .panel{background:rgba(255,255,255,0.6);border-radius:5px;padding:5px;min-width:200px;max-width:420px}
     .panel h2{text-align:center;color:var(--accent);font-size:1.1rem;margin:6px 0 12px}
 
     /* pieces zone */
@@ -65,8 +65,8 @@
   </style>
 </head>
 <body>
-  <main>
-    <h1>Puzzle Poussin 🧩</h1>
+  
+    
     <div id="puzzle-wrapper">
 
       <div class="panel" id="pieces-zone">
@@ -74,9 +74,8 @@
         <div id="pieces"></div>
         <button id="reset-btn">🔄 Recommencer</button>
       </div>
-
       <div class="panel" id="board-zone">
-        <h2>Puzzle</h2>
+        <h2>Puzzle 🧩</h2>
         <div id="board-wrapper">
           <img id="board-bg" src="images/animal.png" alt="fond puzzle">
           <div id="board"></div>
@@ -87,7 +86,7 @@
       </div>
 
     </div>
-  </main>
+ 
 
   <script>
     // ---- CONFIG ----
