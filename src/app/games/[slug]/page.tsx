@@ -5,7 +5,7 @@ import { game } from "../../types/games";
 const gamesData: game[] = gamesDataRaw as game[];
 
 // ✅ Page affichage jeu
-export default function Page({ params }: { params: { slug: string } }) {
+export default function Page({ params }: any) {
   const game = gamesData.find((g) => g.slug === params.slug);
 
   if (!game) {
@@ -17,7 +17,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
 // ✅ SEO dynamique
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { params }: any
 ) {
   const game = gamesData.find((g) => g.slug === params.slug);
 
@@ -29,16 +29,16 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${game.title} - Jeux éducatifs Comptines Kids`,
+    title: `${game.title} - Jeux éducatifs`,
     description: game.description,
     openGraph: {
-      title: `${game.title} - Jeux éducatifs Comptines Kids`,
+      title: `${game.title} - Jeux éducatifs`,
       description: game.description,
       images: [{ url: game.thumbnail }]
     },
     twitter: {
       card: "summary_large_image",
-      title: `${game.title} - Jeux éducatifs Comptines Kids`,
+      title: `${game.title} - Jeux éducatifs`,
       description: game.description,
       images: [game.thumbnail]
     }
