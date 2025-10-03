@@ -44,5 +44,17 @@
     "lang": "fr",
     "gamePath": "/games/puzzle_1/index.html"
     
+  },
+  {
+    "id": 5,
+    "title": "Jeux d'addition",
+    "slug": "jeux_addition",
+   "thumbnail": "/images/addition.png",
+    "description": "Apprends les additions 🎁",
+    "categories": ["Puzzle"],
+    "popular": true,
+    "lang": "fr",
+    "gamePath": "/games/jeux_addition/index.html"
+    
   }
 ]

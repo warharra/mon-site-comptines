@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jeu d'Additions - Pour Enfants</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Ecran d'accueil -->
+    <section id="home" class="screen active">
+      <h1 class="title">Apprends les additions 🎉</h1>
+      <p class="subtitle">Jeu éducatif pour enfants - stades : facile → difficile</p>
+      <div class="home-controls">
+        <button id="btn-play" class="btn primary">Jouer</button>
+        <button id="btn-free" class="btn">Mode libre (dessin)</button>
+      </div>
+      <div class="settings-row">
+        <label>
+          Musique
+          <input type="checkbox" id="toggle-sound" checked />
+        </label>
+        <label>
+          Difficulté
+          <select id="select-diff">
+            <option value="easy">Facile</option>
+            <option value="medium">Moyen</option>
+            <option value="hard">Difficile</option>
+          </select>
+        </label>
+      </div>
+      <div class="gallery-preview">
+        <!-- Miniatures de niveaux - Copilot générera le contenu JS -->
+      </div>
+    </section>
+
+    <!-- Ecran de jeu -->
+    <section id="game" class="screen">
+      <div class="game-header">
+        <button id="btn-back" class="btn">← Retour</button>
+        <div class="progress">Niveau <span id="level-num">1</span> • Étoiles: <span id="stars">0</span></div>
+      </div>
+
+      <div class="game-body">
+        <div id="scene" class="scene">
+          <!-- SVG du niveau (inline) sera injecté ici -->
+        </div>
+
+        <div id="answers" class="answers">
+          <!-- Boutons de réponses générés par JS -->
+        </div>
+      </div>
+
+      <div class="game-footer">
+        <button id="btn-reset" class="btn">Réessayer</button>
+        <button id="btn-save" class="btn">Sauvegarder image</button>
+      </div>
+    </section>
+
+    <!-- Mode libre (dessin) -->
+    <section id="freedraw" class="screen">
+      <div class="draw-header">
+        <button class="btn" id="btn-back-fd">← Retour</button>
+        <div class="tools">
+          <input type="color" id="brush-color" value="#000000" />
+          <input type="range" id="brush-size" min="1" max="40" value="6" />
+          <button id="btn-erase" class="btn">Gomme</button>
+          <button id="btn-download" class="btn">Télécharger</button>
+        </div>
+      </div>
+      <canvas id="draw-canvas"></canvas>
+    </section>
+
+    <!-- Modal de félicitations -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <h2 id="modal-title">Bravo 🎉</h2>
+        <p id="modal-msg">Tu as réussi ce niveau !</p>
+        <button id="modal-close" class="btn primary">Continuer</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

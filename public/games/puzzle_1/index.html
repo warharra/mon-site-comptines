@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Puzzle Poussin - responsive</title>
+  <title>Puzzle Poussin - Responsive & Mobile</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
     :root{ --accent:#6d8cff; --yellow:#ffd82f; --bg1:linear-gradient(135deg,#f7eaff 0%,#fff8d6 100%);} 
@@ -15,101 +15,176 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
-    main{max-width:1100px;margin:18px auto;padding:18px}
-    h1{text-align:center;color:var(--yellow);text-shadow:2px 2px 0 #6d8cff;margin:6px 0 18px}
+    h1{text-align:center;color:var(--yellow);text-shadow:2px 2px 0 #6d8cff;margin:12px 0 20px}
 
-    /* layout */
-    #puzzle-wrapper{display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap}
-
-    .panel{background:rgba(255,255,255,0.6);border-radius:5px;padding:5px;min-width:200px;max-width:420px}
-    .panel h2{text-align:center;color:var(--accent);font-size:1.1rem;margin:6px 0 12px}
-
-    /* pieces zone */
-    #pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;justify-items:center;align-items:center;background:#fff;padding:12px;border-radius:10px}
-    .tile{width:84px;height:84px;background:#fff8d6;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px #ffd82f22;cursor:grab;overflow:hidden;position:relative}
-    .tile img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
-    .tile.dragging{opacity:0.65;transform:scale(1.03);z-index:1000}
-
-    #reset-btn{display:block;margin:10px auto 0;background:var(--yellow);color:var(--accent);border:none;border-radius:20px;padding:10px 18px;font-size:1.05rem;cursor:pointer;box-shadow:0 2px 8px #ffd6f655}
-    #reset-btn:hover{background:var(--accent);color:var(--yellow)}
+    /* zone principale */
+    #puzzle-zone {
+      max-width: 95vw;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+    }
 
     /* board */
-    #board-wrapper{position:relative;display:block;max-width:360px;width:100%}
-    #board-bg{width:100%;height:auto;display:block;border-radius:12px;opacity:0.42;filter:grayscale(10%) brightness(1.02)}
-    #board{position:absolute;top:0;left:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);width:100%;height:100%;gap:0}
-
-    .dropzone{border:1px dashed rgba(255,216,47,0.45);background:transparent;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .dropzone img{width:100%;height:100%;object-fit:cover;display:block}
-    .dropzone.filled{border:none;box-shadow:none}
-
-    .dropzone.magnet{animation:magnet .6s}
-    @keyframes magnet{0%{transform:scale(.95);box-shadow:0 0 0 #bdf5d2}40%{transform:scale(1.06);box-shadow:0 0 18px #48a680}100%{transform:scale(1);box-shadow:0 0 0 #bdf5d2}}
-
-    /* floating clone during touch drag */
-    .float-tile{position:fixed;width:84px;height:84px;border-radius:8px;z-index:9999;pointer-events:none;box-shadow:0 6px 24px rgba(0,0,0,0.2);transform:translate(-50%,-50%)}
-    .float-tile img{width:100%;height:100%;object-fit:cover;display:block}
-
-    /* victory */
-    #victory{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.85);display:flex;align-items:center;justify-content:center;z-index:200;border-radius:12px;animation:fadeIn 0.9s}
-    .victory-msg{font-size:2rem;color:#48a680;background:#fff8d6;border-radius:12px;padding:26px 36px;box-shadow:0 4px 32px rgba(0,0,0,0.08);animation:popBravo 0.9s}
-    @keyframes popBravo{0%{transform:scale(.8)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-    /* responsive */
-    @media (max-width:900px){
-      #puzzle-wrapper{flex-direction:column;align-items:center}
-      .panel{max-width:360px;width:92%}
-      #pieces{grid-template-columns:repeat(3,1fr)}
-      .tile, .float-tile{width:64px;height:64px}
+    #board-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1/1; /* carré */
+      margin-bottom: 14px;
     }
+    #board-bg {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+    #board {
+      position: absolute;
+      top: 0;left: 0;
+      display: grid;
+      width: 100%;height: 100%;
+    }
+    .dropzone{
+      border:1px dashed rgba(255,216,47,0.45);
+      background:transparent;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden
+    }
+    .dropzone img{width:100%;height:100%;object-fit:cover}
+    .dropzone.filled{border:none}
+
+    .dropzone.magnet{animation:magnet .5s}
+    @keyframes magnet{
+      0%{transform:scale(.9);box-shadow:0 0 0 #bdf5d2}
+      40%{transform:scale(1.1);box-shadow:0 0 18px #48a680}
+      100%{transform:scale(1)}
+    }
+
+    /* pièces */
+    #pieces {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      gap: 6px;
+      width: 100%;
+      max-width: 360px;
+      margin-bottom: 14px;
+    }
+    .tile {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background:#fff8d6;
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 2px 10px #ffd82f22;
+      cursor:grab;
+      overflow:hidden;
+      position:relative;
+    }
+    .tile img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+    .tile.dragging{opacity:0.65;transform:scale(1.05);z-index:1000}
+
+    /* floating clone tactile */
+    .float-tile{
+      position:fixed;
+      width:72px;height:72px;
+      border-radius:8px;
+      z-index:9999;
+      pointer-events:none;
+      box-shadow:0 6px 24px rgba(0,0,0,0.2);
+      transform:translate(-50%,-50%);
+    }
+    .float-tile img{width:100%;height:100%;object-fit:cover}
+
+    /* bouton */
+    #reset-btn{
+      display:block;
+      margin: 0 auto 16px;
+      background:var(--yellow);
+      color:var(--accent);
+      border:none;border-radius:20px;
+      padding:10px 18px;font-size:1.05rem;
+      cursor:pointer;
+      box-shadow:0 2px 8px #ffd6f655
+    }
+    #reset-btn:hover{background:var(--accent);color:var(--yellow)}
+
+    /* victoire */
+    #victory{
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:rgba(255,255,255,0.85);
+      display:flex;align-items:center;justify-content:center;
+      z-index:200;border-radius:12px;
+      animation:fadeIn .7s;
+    }
+    .victory-msg{
+      font-size:2rem;
+      color:#48a680;
+      background:#fff8d6;
+      border-radius:12px;
+      padding:22px 28px;
+      box-shadow:0 4px 32px rgba(0,0,0,0.08);
+      animation:popBravo .7s
+    }
+    @keyframes popBravo{0%{transform:scale(.8)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
   </style>
 </head>
 <body>
-  
-    
-    <div id="puzzle-wrapper">
 
-      <div class="panel" id="pieces-zone">
-        <h2>Pièces à placer</h2>
-        <div id="pieces"></div>
-        <button id="reset-btn">🔄 Recommencer</button>
+  <h1>Puzzle requin</h1>
+  <div id="puzzle-zone">
+    <div id="board-wrapper">
+      <img id="board-bg" src="images/animal.png" alt="fond puzzle">
+      <div id="board"></div>
+      <div id="victory" style="display:none;">
+        <div class="victory-msg">Bravo 🎉</div>
       </div>
-      <div class="panel" id="board-zone">
-        <h2>Puzzle 🧩</h2>
-        <div id="board-wrapper">
-          <img id="board-bg" src="images/animal.png" alt="fond puzzle">
-          <div id="board"></div>
-        </div>
-        <div id="victory" style="display:none;">
-          <div class="victory-msg">Bravo 🎉</div>
-        </div>
-      </div>
-
     </div>
- 
+
+    <h2>Pièces à placer</h2>
+    <div id="pieces"></div>
+
+    <button id="reset-btn">🔄 Recommencer</button>
+  </div>
 
   <script>
     // ---- CONFIG ----
     const IMG_SRC = "images/animal.png";
-    const ROWS = 3, COLS = 3;
+    const LEVELS = [
+      {rows:3, cols:3}, // niveau facile
+      {rows:4, cols:4}  // niveau suivant
+    ];
+    let currentLevel = 0;
 
     // ---- STATE ----
-    let pieces = []; // {id, img, correctPos:[x,y]}
+    let ROWS, COLS;
+    let pieces = [];
     let pieceOrder = [];
     let placed = [];
-    let draggedId = null; // for desktop drag
-
-    // pointer/touch drag state
-    let touchDrag = null; // {piece, clone}
+    let draggedId = null;
 
     // ---- INIT ----
     document.addEventListener('DOMContentLoaded', () => {
       initUI();
-      createPuzzle();
+      startLevel(0);
     });
 
     function initUI(){
-      document.getElementById('reset-btn').addEventListener('click', createPuzzle);
+      document.getElementById('reset-btn').addEventListener('click', ()=>startLevel(currentLevel));
+    }
+
+    async function startLevel(level){
+      currentLevel = level;
+      ROWS = LEVELS[level].rows;
+      COLS = LEVELS[level].cols;
+      await createPuzzle();
     }
 
     async function createPuzzle(){
@@ -118,7 +193,6 @@
       placed = Array(ROWS*COLS).fill(null);
       document.getElementById('victory').style.display = 'none';
 
-      // Load image to get dimensions then split
       const img = new Image();
       img.src = IMG_SRC;
       await img.decode();
@@ -126,17 +200,13 @@
       pieces = imgPieces;
       pieceOrder = shuffle([...pieces]);
 
-      // set board bg and size
       const boardBg = document.getElementById('board-bg');
       boardBg.src = IMG_SRC;
       await boardBg.decode();
-      adjustBoardSize();
-
       renderPieces();
       renderBoard();
     }
 
-    // Split using an already decoded Image to avoid double load
     function splitImageFromImage(img, rows, cols){
       const w = img.naturalWidth, h = img.naturalHeight;
       const arr = [];
@@ -155,14 +225,6 @@
 
     function shuffle(a){let arr=a.slice();for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
 
-    function adjustBoardSize(){
-      const boardBg = document.getElementById('board-bg');
-      const board = document.getElementById('board');
-      // set board element to match image rendered size
-      board.style.width = boardBg.clientWidth + 'px';
-      board.style.height = boardBg.clientHeight + 'px';
-    }
-
     // ---- RENDER PIECES ----
     function renderPieces(){
       const zone = document.getElementById('pieces');
@@ -171,11 +233,11 @@
         if (placed.find(p=>p && p.id === piece.id)) return;
         const div = document.createElement('div');
         div.className = 'tile';
-        div.draggable = true; // desktop
+        div.draggable = true;
         div.dataset.id = piece.id;
         div.innerHTML = `<img src="${piece.img}" alt="">`;
 
-        // desktop drag events
+        // desktop drag
         div.addEventListener('dragstart', (e)=>{
           draggedId = piece.id;
           div.classList.add('dragging');
@@ -183,8 +245,8 @@
         });
         div.addEventListener('dragend', ()=>{ draggedId = null; div.classList.remove('dragging'); });
 
-        // pointer/touch for mobile
-        div.addEventListener('pointerdown', (e)=>onPointerStart(e, piece, div));
+        // tactile drag
+        enableTouchDrag(div, piece);
 
         zone.appendChild(div);
       });
@@ -226,9 +288,9 @@
       }
     }
 
-    // ---- DROP HANDLER ----
+    // ---- DROP ----
     function handleDrop(piece, dz){
-      const pos = dz.dataset.pos; // "x,y"
+      const pos = dz.dataset.pos;
       if (piece.correctPos.join(',') === pos){
         dz.classList.add('magnet');
         setTimeout(()=>dz.classList.remove('magnet'), 600);
@@ -245,45 +307,45 @@
       }
     }
 
-    // ---- TOUCH / POINTER DRAGGING ----
-    function onPointerStart(e, piece, tileEl){
-      // Use pointer-type touch or if device has touch points - to avoid interfering with mouse drag
-      const mustUsePointer = (e.pointerType === 'touch') || (navigator.maxTouchPoints && navigator.maxTouchPoints>0);
-      if (!mustUsePointer) return; // let native drag handle mouse
+    // ---- TOUCH DRAG ----
+    function enableTouchDrag(tileEl, piece) {
+      let clone = null;
+      tileEl.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
 
-      e.preventDefault();
+        clone = document.createElement("div");
+        clone.className = "float-tile";
+        const img = document.createElement("img");
+        img.src = piece.img;
+        clone.appendChild(img);
+        document.body.appendChild(clone);
 
-      // create floating clone
-      const rect = tileEl.getBoundingClientRect();
-      const clone = document.createElement('div');
-      clone.className = 'float-tile';
-      const img = document.createElement('img'); img.src = piece.img;
-      clone.appendChild(img);
-      document.body.appendChild(clone);
+        moveAt(touch.clientX, touch.clientY);
 
-      const offsetX = e.clientX - (rect.left + rect.width/2);
-      const offsetY = e.clientY - (rect.top + rect.height/2);
+        function moveAt(x, y) {
+          clone.style.left = x + "px";
+          clone.style.top = y + "px";
+        }
 
-      function moveAt(clientX, clientY){
-        clone.style.left = clientX - offsetX + 'px';
-        clone.style.top = clientY - offsetY + 'px';
-      }
-      moveAt(e.clientX, e.clientY);
+        function onMove(ev) {
+          const t = ev.touches[0];
+          moveAt(t.clientX, t.clientY);
+        }
 
-      function onMove(ev){ moveAt(ev.clientX, ev.clientY); }
-      function onUp(ev){
-        document.removeEventListener('pointermove', onMove);
-        document.removeEventListener('pointerup', onUp);
-        // check drop target
-        const el = document.elementFromPoint(ev.clientX, ev.clientY);
-        const dz = el ? el.closest('.dropzone') : null;
-        if (dz) handleDrop(piece, dz);
-        // cleanup clone
-        clone.remove();
-      }
+        function onEnd(ev) {
+          const t = ev.changedTouches[0];
+          const el = document.elementFromPoint(t.clientX, t.clientY);
+          const dz = el ? el.closest(".dropzone") : null;
+          if (dz) handleDrop(piece, dz);
+          clone.remove();
+          document.removeEventListener("touchmove", onMove);
+          document.removeEventListener("touchend", onEnd);
+        }
 
-      document.addEventListener('pointermove', onMove);
-      document.addEventListener('pointerup', onUp);
+        document.addEventListener("touchmove", onMove);
+        document.addEventListener("touchend", onEnd);
+      });
     }
 
     // ---- VICTORY ----
@@ -291,13 +353,14 @@
       if (placed.every(p=>p!==null)){
         const v = document.getElementById('victory');
         v.style.display = '';
-        setTimeout(()=>{ v.style.display = 'none'; }, 2400);
+        setTimeout(()=>{
+          v.style.display = 'none';
+          if (currentLevel+1 < LEVELS.length){
+            startLevel(currentLevel+1);
+          }
+        }, 1800);
       }
     }
-
-    // make sure board resizes if window changes
-    window.addEventListener('resize', ()=>{ setTimeout(adjustBoardSize, 60); });
-
   </script>
 </body>
 </html>

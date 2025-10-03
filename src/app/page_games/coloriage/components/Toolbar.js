@@ -4,7 +4,7 @@ export default function Toolbar({
   onErase, onReset, onSave, onBack, canErase, canReset, canSave, canBack
 }) {
   return (
-    <div className="flex justify-center gap-3 py-2">
+    <div className="flex justify-center gap-3 py-2 flex-wrap"   >
       <button
         onClick={onErase}
         className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"

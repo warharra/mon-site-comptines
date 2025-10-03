@@ -9,7 +9,7 @@ const COLORS = [
 
 export default function Palette({ selected, onSelect }) {
   return (
-    <div className="flex justify-center gap-2 py-2">
+    <div className="flex justify-center gap-2 py-2 flex-wrap">
       {COLORS.map((color, idx) => (
         <button
           key={color}
