@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Memo Ludizio — Jeu de mémoire</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="container">
+<header>
+<h1 >Memo Ludizio</h1>
+<p class="subtitle">Suis la séquence et répète-la — Amuse-toi bien !</p>
+</header>
+
+
+<section class="hud">
+<div>Niveau : <span id="level">1</span></div>
+<div>Étape : <span id="step">0 / 0</span></div>
+</section>
+
+
+<section id="board" class="board" aria-live="polite" justify-content= "center">
+<!-- Les boutons seront générés par JavaScript -->
+</section>
+
+
+<div class="controls">
+<button id="startBtn" class="btn primary">Démarrer</button>
+<button id="resetBtn" class="btn">Réinitialiser</button>
+</div>
+
+
+<div id="message" class="message"></div>
+
+</main>
+
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -119,6 +119,17 @@
   "popular": true,
   "lang": ["fr", "en"],
   "gamePath": "/games/coloriages-pdf/index.html"
+},
+ {
+  "id": 12,
+  "title": "🌈 Jeu de mémoire lumineux",
+  "slug": "memoire_lumineux",
+  "thumbnail": "/images/memo_lum.png",
+  "description": "Télécharge et imprime nos jolis coloriages pour t’amuser à la maison 🎨 !",
+  "categories": ["Mémoire"],
+  "popular": true,
+  "lang": ["fr", "en"],
+  "gamePath": "/games/memoire_lumineux/index.html"
 }
 
 ]
