@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import videosData from "../../videos.json";
 import { useLanguage } from "./LanguageContext";
 
 export default function HomePageClient() {
   const [category, setCategory] = useState("Comptines");
   const [search, setSearch] = useState("");
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage(); // ✅ récupère la langue globale
 
+  // Alphabet avec couleurs
   const alphabetColors = [
     "text-red-500",
     "text-white-200",
@@ -22,24 +22,30 @@ export default function HomePageClient() {
     "text-pink-500",
   ];
 
+  // Catégories disponibles
   const categories = [
-    { name: "Populaire", nameEn: "Popular", emoji: "🔥", color: "bg-red-300" },
-    { name: "Berceuse", nameEn: "Lullaby", emoji: "🌙", color: "bg-blue-300" },
-    { name: "Histoire", nameEn: "Story", emoji: "📖", color: "bg-green-300" },
-    { name: "Apprentissage", nameEn: "Learning", emoji: "📚", color: "bg-yellow-300" },
-    { name: "40 min Compilation", nameEn: "40 min Compilation", emoji: "🎬", color: "bg-purple-300" },
+    { name: "Populaire", emoji: "🔥", color: "bg-red-300" },
+    { name: "Berceuse", emoji: "🌙", color: "bg-blue-300" },
+    { name: "Histoire", emoji: "📖", color: "bg-green-300" },
+    { name: "Apprentissage", emoji: "📚", color: "bg-yellow-300" },
+    { name: "40 min Compilation", emoji: "🎬", color: "bg-purple-300" },
   ];
 
-  const sortedVideos = [...videosData].filter((video) => video.lang === language);
+  // Trier vidéos par date décroissante (et filtrer par langue active)
+  const sortedVideos = [...videosData]
+    .filter((video) => video.lang === language)
 
+  // 🔎 Filtrer selon recherche, lettre ou catégorie
   let filteredVideos = sortedVideos;
 
   if (search.trim() !== "") {
+    // Recherche par mot-clé
     filteredVideos = sortedVideos.filter((video) =>
       video.title.toLowerCase().includes(search.toLowerCase())
     );
   } else if (category !== "Comptines") {
     if (category.length === 1) {
+      // ✅ Filtre par première lettre du titre
       filteredVideos = sortedVideos.filter((video) =>
         video.title.toUpperCase().startsWith(category.toUpperCase())
       );
@@ -51,28 +57,22 @@ export default function HomePageClient() {
       );
     }
   } else {
+    // ⚡ Par défaut → vidéos populaires
     filteredVideos = sortedVideos.filter((video) => video.popular);
   }
 
-  const displayedVideos = filteredVideos.slice(0, 50);
+  // Limiter à 28 vidéos max
+  const displayedVideos = filteredVideos.slice(0, 28);
 
   return (
-    <div className="bg-[#E6FBFF] min-h-screen p-4">
+    <div className="bg-[#E6FBFF] min-h-screen p-6">
       {/* 🎨 Texte magique */}
       <div className="bg-gradient-to-r from-yellow-300 to-pink-300 text-center py-8 hidden md:block">
-        <h2
-          className="text-3xl font-bold mb-2 text-white cursor-pointer"
-          onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
-        >
-          {language === "fr" ? "🌞 Le monde magique des comptines 🌈" : "🌞 The magical world of nursery rhymes 🌈"}
+        <h2 className="text-3xl font-bold mb-2 text-white">
+          🌞 Le monde magique des comptines 🌈
         </h2>
-        <p
-          className="mb-4 text-white font-bold cursor-pointer"
-          onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
-        >
-          {language === "fr"
-            ? "Découvre nos chansons, berceuses et histoires"
-            : "Discover our songs, lullabies and stories"}
+        <p className="mb-4 text-white font-bold">
+          Découvre nos chansons, berceuses et histoires
         </p>
       </div>
 
@@ -80,12 +80,12 @@ export default function HomePageClient() {
       {sortedVideos.length > 0 && (
         <div className="max-w-6xl mx-auto p-4 hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Vidéo réduite */}
             <div className="w-full">
               <iframe
-                width="89%"
+                width="100%"
                 height="260"
                 frameBorder="0"
-                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 className="rounded-lg"
                 src={`https://www.youtube.com/embed/${sortedVideos[0].youtubeId}`}
@@ -93,6 +93,7 @@ export default function HomePageClient() {
                 allowFullScreen
               />
             </div>
+            {/* Titre + description */}
             <div>
               <h2 className="text-xl font-bold text-[#ee6d6d] mb-2 line-clamp-2">
                 {sortedVideos[0].title}
@@ -104,7 +105,7 @@ export default function HomePageClient() {
                 href={`/video/${sortedVideos[0].slug}`}
                 className="mt-3 inline-block bg-[#ee6d6d] text-white px-4 py-2 rounded-lg shadow hover:scale-105 transition"
               >
-                ▶️ {language === "fr" ? "Voir la vidéo" : "Watch video"}
+                ▶️ Voir la vidéo
               </Link>
             </div>
           </div>
@@ -116,10 +117,9 @@ export default function HomePageClient() {
         {categories.map((cat) => (
           <button
             key={cat.name}
-            onClick={() => {
-              setCategory(category === cat.name ? "Comptines" : cat.name);
-              setLanguage("en"); // Passe en anglais quand on clique
-            }}
+            onClick={() =>
+              setCategory(category === cat.name ? "Comptines" : cat.name)
+            }
             className={`
               ${cat.color} px-4 py-2 rounded-xl font-bold text-base
               transform transition duration-300
@@ -127,33 +127,34 @@ export default function HomePageClient() {
               ${category === cat.name ? "ring-4 ring-[#ee6d6d]" : ""}
             `}
           >
-            {cat.emoji} {language === "fr" ? cat.name : cat.nameEn}
+            {cat.emoji} {cat.name}
           </button>
         ))}
 
         <input
           type="text"
-          placeholder={language === "fr" ? "🔍 Rechercher..." : "🔍 Search..."}
+          placeholder="🔍 Rechercher..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="border rounded px-3 py-1"
         />
       </div>
-
-      {/* 🔤 Alphabet coloré */}
-      <div className="flex flex-wrap justify-center gap-2 mb-6">
-        {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter, i) => (
-          <button
-            key={letter}
-            onClick={() => setCategory(category === letter ? "Comptines" : letter)}
-            className={`font-bold text-lg transition-transform hover:scale-110 ${
-              alphabetColors[i % alphabetColors.length]
-            } ${category === letter ? "underline" : ""}`}
-          >
-            {letter}
-          </button>
-        ))}
-      </div>
+       {/* 🔤 Alphabet coloré */}
+        <div className="flex flex-wrap justify-center gap-2 mb-6">
+          {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter, i) => (
+            <button
+              key={letter}
+              onClick={() =>
+                setCategory(category === letter ? "Comptines" : letter)
+              }
+              className={`font-bold text-lg transition-transform hover:scale-125 ${
+                alphabetColors[i % alphabetColors.length]
+              } ${category === letter ? "underline" : ""}`}
+            >
+              {letter}
+            </button>
+          ))}
+        </div>
 
       {/* 🃏 Liste des vidéos */}
       <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-4 p-6 rounded-xl shadow-md">
@@ -163,12 +164,9 @@ export default function HomePageClient() {
             href={`/video/${video.slug}`}
             className="bg-white shadow-md rounded-xl overflow-hidden hover:scale-105 transition transform"
           >
-            <Image
+            <img
               src={video.thumbnail}
               alt={`Comptine ${video.title} pour enfants`}
-              width={400}
-              height={225}
-              loading="lazy"
               className="w-full h-40 object-cover rounded-lg"
             />
             <div className="p-2">

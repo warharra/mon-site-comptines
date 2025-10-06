@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coloriages à imprimer - Comptines Kids</title>
+  <meta
+    name="description"
+    content="Télécharge gratuitement des coloriages à imprimer pour enfants : animaux, véhicules, héros, princesses et plus. Des activités amusantes pour tous les enfants !"
+  />
+  <meta
+    name="keywords"
+    content="coloriage à imprimer, coloriage enfant gratuit, activités enfants, coloriage animaux, coloriage super-héros, coloriage véhicules, Comptines Kids"
+  />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #f5fbff;
+      color: #333;
+    }
+
+    /* ✨ Scroll intelligent : visible uniquement si nécessaire */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: linear-gradient(90deg, #5ec2f2, #9ee7b9);
+      color: #fff;
+      border-bottom: 3px solid #4fb3e4;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      color: #007bbd;
+      margin-bottom: 6px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 6px 14px;
+      background-color: #f2c94c;
+      color: #004f7c;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #eabf3a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 0.7rem;
+      background-color: #dff6ff;
+      font-size: 0.9rem;
+      color: #007bbd;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1rem;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .card img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🖍️ Coloriages à imprimer 🎨</h1>
+  </header>
+
+  <main>
+    <div class="grid">
+      <div class="card">
+        <img src="/images/pdf1.png" alt="Coloriage Ours">
+        <h2>Coloriage chat</h2>
+        <a href="/pdf/kitten-in-a-basket.pdf" download class="btn">📥 Télécharger</a>
+      </div>
+
+      <div class="card">
+        <img src="/images/pdf2.png" alt="Coloriage Licorne">
+        <h2>Coloriage chaton</h2>
+        <a href="/pdf/kitten-in-the-garden.pdf" download class="btn">📥 Télécharger</a>
+      </div>
+
+      <div class="card">
+        <img src="/images/pdf3.png" alt="Coloriage Voiture">
+        <h2>Coloriage cheval</h2>
+        <a href="/pdf/sleeping-horse.pdf" download class="btn">📥 Télécharger</a>
+      </div>
+
+      <div class="card">
+        <img src="/images/pdf4.png" alt="Coloriage Princesse">
+        <h2>Coloriage Princesse</h2>
+        <a href="/pdf/coloriages/princess-with-unicorn.pdf" download class="btn">📥 Télécharger</a>
+      </div>
+      <div class="card">
+        <img src="/images/pdf5.png" alt="Coloriage Princesse">
+        <h2>Coloriage Licorne</h2>
+        <a href="/pdf/coloriages/unicorn-and-castle.pdf" download class="btn">📥 Télécharger</a>
+      </div>
+       <div class="card">
+        <img src="/images/pdf6.png" alt="Coloriage Princesse">
+        <h2>Coloriage chat</h2>
+        <a href="/pdf/coloriages/cat-and-milk.pdf" download class="btn">📥 Télécharger</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

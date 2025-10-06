@@ -764,5 +764,21 @@
     ],
     "popular": true
 
+  },
+   {
+    "id": 70,
+    "date": "2025-09-25",
+    "title": "The Goose that laid the Golden Eggs ",
+    "slug": "the_goose_that_laid_the_golden_eggs ",
+    "thumbnail": "/images/85.png",
+    "youtubeId": "WqurNcQij6Y",
+    "description": "Golden egg story in English - The goose that laid the golden egg story by Baby Hazel Fairy Tales & Short Stories. (Moral Stories)",
+    "letter": "T",
+    "lang": "en",
+    "categories": [
+      "Histoire"
+    ],
+    "popular": true
+
   }
 ]

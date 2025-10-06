@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import React, { useState } from "react";
 import HomeScreen from "./components/HomeScreen";
 import LevelSelection from "./components/LevelSelection";
 import ExerciseScreen from "./components/ExerciseScreen";
 import RewardScreen from "./components/RewardScreen";
 import StickerBar from "./components/StickerBar";
 
-// Gestion du son
-const musicUrl = "https://cdn.pixabay.com/audio/2022/10/16/audio_12b1b7e1e0.mp3";
+const ICONS = ["🎁", "🎈", "🍏", "⭐", "🧸"];
+
+function getProgress() {
+  return JSON.parse(localStorage.getItem("mathGameProgress") || "{}");
+}
+function saveProgress(data) {
+  localStorage.setItem("mathGameProgress", JSON.stringify(data));
+}
 
 const LEVELS = [
   { id: 1, label: "Niveau 1 (1+1 à 4+1)", min: 1, max: 5 },
@@ -14,59 +22,40 @@ const LEVELS = [
   { id: 3, label: "Niveau 3 (jusqu’à 20)", min: 1, max: 20 },
 ];
 
-function getProgress() {
-  return JSON.parse(localStorage.getItem("mathGameProgress") || "{}");
-}
-
-function saveProgress(data) {
-  localStorage.setItem("mathGameProgress", JSON.stringify(data));
+function getSticker() {
+  const stickers = ["🎉", "⭐", "🎁", "🎈", "🍎", "🍌", "🐻"];
+  return stickers[Math.floor(Math.random() * stickers.length)];
 }
 
 export default function App() {
-  const [screen, setScreen] = useState("home"); // home, levelSelect, exercise, reward
-  const [level, setLevel] = useState(null); // {id, min, max}
+  const [screen, setScreen] = useState("home");
+  const [level, setLevel] = useState(null);
   const [exercises, setExercises] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [score, setScore] = useState(0);
   const [stickers, setStickers] = useState(getProgress().stickers || []);
-  const [music, setMusic] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
 
-  // Musique de fond
-  useEffect(() => {
-    let audio = document.getElementById("bgmusic");
-    if (!audio) {
-      audio = document.createElement("audio");
-      audio.id = "bgmusic";
-      audio.src = musicUrl;
-      audio.loop = true;
-      audio.volume = 0.2;
-      document.body.appendChild(audio);
-    }
-    if (music) audio.play();
-    else audio.pause();
-  }, [music]);
-
-  // Démarrage niveau ou mode libre
-  function startLevel(levelConfig) {
-    setLevel(levelConfig);
-    setExercises(generateExercises(levelConfig.min, levelConfig.max));
-    setScore(0);
-    setCurrentIdx(0);
-    setScreen("exercise");
-  }
-
-  // Générer les exercices
   function generateExercises(min, max) {
     const arr = [];
     for (let i = 0; i < 8; i++) {
       const a = Math.floor(Math.random() * (max - min + 1)) + min;
       const b = Math.floor(Math.random() * (max - min + 1)) + min;
-      arr.push({ a, b });
+      const icon = ICONS[Math.floor(Math.random() * ICONS.length)];
+      arr.push({ a, b, icon });
     }
     return arr;
   }
-
-  // Réponse à un exercice
+  function startLevel(levelConfig) {
+    setLevel(levelConfig);
+    setExercises(generateExercises(levelConfig.min, levelConfig.max));
+    setScore(0);
+    setCurrentIdx(0);
+    setStartTime(performance.now());
+    setEndTime(null);
+    setScreen("exercise");
+  }
   function handleAnswer(correct) {
     if (correct) {
       setScore((s) => s + 1);
@@ -75,31 +64,30 @@ export default function App() {
         saveProgress({ stickers: next });
         return next;
       });
-    }
-    if (currentIdx + 1 < exercises.length) {
-      setTimeout(() => setCurrentIdx((i) => i + 1), 900);
+      if (currentIdx + 1 < exercises.length) {
+        setTimeout(() => setCurrentIdx((i) => i + 1), 900);
+      } else {
+        setEndTime(performance.now());
+        setScreen("reward");
+      }
     } else {
-      setScreen("reward");
+      // On ne change pas d'exercice, on reste sur le même
+      // (Le son d’erreur est joué dans ExerciseScreen)
     }
   }
-
-  // Sticker aléatoire
-  function getSticker() {
-    const stickers = ["🎉", "⭐", "🎁", "🎈", "🍎", "🍌", "🐻"];
-    return stickers[Math.floor(Math.random() * stickers.length)];
-  }
-
-  // Revenir à l’accueil
   function goHome() {
     setScreen("home");
     setLevel(null);
     setExercises([]);
     setCurrentIdx(0);
     setScore(0);
+    setStartTime(null);
+    setEndTime(null);
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-100 to-yellow-100 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-100 to-yellow-100 flex flex-col items-center ">
+      <StickerBar stickers={stickers} />
       {screen === "home" && (
         <HomeScreen
           onPlay={() => setScreen("levelSelect")}
@@ -122,6 +110,7 @@ export default function App() {
           number={currentIdx + 1}
           total={exercises.length}
           onAnswer={handleAnswer}
+          startTime={startTime}
         />
       )}
       {screen === "reward" && (
@@ -131,8 +120,12 @@ export default function App() {
           stickers={stickers.slice(-score)}
           onBack={goHome}
           onReplay={() => startLevel(level)}
+          startTime={startTime}
+          endTime={endTime}
         />
       )}
+      <audio id="sndApplause" src="sounds/applause.mp3" preload="auto"></audio>
+      <audio id="sndError" src="sounds/error.mp3" preload="auto"></audio>
     </div>
   );
 }

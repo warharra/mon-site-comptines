@@ -5,14 +5,17 @@ import { game } from "../../types/games";
 import ColoringGame from "../../page_games/coloriage/ColoringGame";
 import AdditionGame from "../../page_games/jeux_addition/AdditionGame";
 
-import { useRouter } from "next/navigation"; // hook Next.js pour la navigation
+import { useRouter } from "next/navigation";
+import MultiplicationGame from "@/app/page_games/jeux_addition/multiplication/MultiplicationGame";
+import SoustractionGame from "@/app/page_games/jeux_addition/soustraction/SoustractionGame";
+
 
 export default function GamePageClient({ game }: { game: game }) {
   const router = useRouter();
 
   return (
     
-    <div className="bg-gradient-to-b from-pink-100 via-yellow-100 to-blue-100 min-h-screen p-6 relative">
+    <div>
       
       {/* Bouton retour */}
       <button
@@ -26,17 +29,22 @@ export default function GamePageClient({ game }: { game: game }) {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
-        className="w-full flex justify-center mt-12"
+       className="flex w-full justify-center "
       >
               {game.slug === "coloriage" ? (
           <ColoringGame />
         ) : game.slug === "jeux_addition" ? (
           <AdditionGame />
-        ) : (
+        ) : game.slug === "jeux_Multiplication" ? (
+          <MultiplicationGame />
+        ) : game.slug === "soustraction" ? (
+          <SoustractionGame />
+        ) :
+        (
           <iframe
             src={game.gamePath}
             title={game.title}
-            className="w-full h-[80vh] max-w-5xl border-0"
+            className="w-full h-[100vh] max-w-8xl "
             allowFullScreen
           />
         )}

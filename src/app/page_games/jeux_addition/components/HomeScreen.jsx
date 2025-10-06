@@ -1,10 +1,12 @@
+"use client";
+
 import React from "react";
 
 export default function HomeScreen({ onPlay, onFreeMode }) {
   return (
     <div className="w-full max-w-md mx-auto py-12 flex flex-col items-center">
       <div className="text-4xl font-bold mb-4 text-pink-600 drop-shadow-lg">
-        Apprends les additions <span className="text-5xl">🎁</span>
+        Apprends les additions <span className="text-2xl">➕</span>
       </div>
       <div className="mb-10 text-lg text-purple-700">Un jeu ludique pour enfants !</div>
       <button
@@ -14,7 +16,7 @@ export default function HomeScreen({ onPlay, onFreeMode }) {
         Jouer
       </button>
       <button
-        className="w-full py-3 bg-pink-400 text-lg rounded-xl shadow hover:bg-pink-300"
+        className="w-full py-3 bg-green-300 text-lg rounded-xl shadow hover:bg-pink-300"
         onClick={onFreeMode}
       >
         Mode libre

@@ -3,58 +3,122 @@
     "id": 1,
     "title": "Puzzle de poussin",
     "slug": "puzzle",
-   "thumbnail": "/images/g1.png",
-    "description": "Assemble les pieces🧩 et découvre leur nom !",
+    "thumbnail": "/images/poussin.png",
+    "description": "Assemble les pièces 🧩 pour reformer le joli poussin et apprends à reconnaître les formes et les couleurs !",
     "categories": ["Puzzle"],
     "popular": true,
     "lang": ["fr", "en"],
-    "gamePath": "/games/puzzle/index.html"
+    "gamePath": "/games/puzzle_poussin/index.html"
   },
-    {
+  {
     "id": 2,
-    "title": "Memo",
+    "title": "Mémo",
     "slug": "memo",
-   "thumbnail": "/images/memo.png",
-    "description": "Jeux de mémoire",
+    "thumbnail": "/images/memo.png",
+    "description": "Fais travailler ta mémoire en retrouvant les paires identiques ! Un jeu amusant pour stimuler ta concentration 🧠",
     "categories": ["Mémoire"],
     "popular": true,
-    "lang": "fr",
+    "lang": ["fr", "en"],
     "gamePath": "/games/memo/index.html"
   },
-   {
+  {
     "id": 3,
     "title": "Coloriage",
     "slug": "coloriage",
-   "thumbnail": "/images/coloriage.png",
-    "description": "Jeux de coloriage",
+    "thumbnail": "/images/coloriage.png",
+    "description": "Exprime ta créativité en coloriant de jolis dessins 🎨 ! Choisis tes couleurs et amuse-toi à donner vie aux images.",
     "categories": ["Coloriage"],
     "popular": true,
-    "lang": "fr",
+    "lang": ["fr", "en"],
     "gamePath": "/games/coloriage/index.html"
-    
   },
-   {
+  {
     "id": 4,
     "title": "Puzzle requin",
-    "slug": "puzzle_1",
-   "thumbnail": "/images/puzzle_requin.png",
-    "description": "Assemble les pieces 🧩 et découvre leur nom !",
+    "slug": "puzzle_requin",
+    "thumbnail": "/images/puzzle_requin.png",
+    "description": "Reconstitue le puzzle du petit requin 🦈 et découvre sa belle image tout en développant ta logique et ta patience !",
     "categories": ["Puzzle"],
     "popular": true,
-    "lang": "fr",
-    "gamePath": "/games/puzzle_1/index.html"
-    
+    "lang": ["fr", "en"],
+    "gamePath": "/games/puzzle_requin/index.html"
   },
   {
     "id": 5,
-    "title": "Jeux d'addition",
+    "title": "Jeu d’addition +",
     "slug": "jeux_addition",
-   "thumbnail": "/images/addition.png",
-    "description": "Apprends les additions 🎁",
+    "thumbnail": "/images/addition_poussin.png",
+    "description": "Apprends à additionner tout en t’amusant ! Résous les calculs et deviens un champion des additions ➕",
+    "categories": ["Apprentissage"],
+    "popular": true,
+    "lang": ["fr", "en"],
+    "gamePath": "/games/jeux_addition/index.html"
+  },
+  {
+    "id": 6,
+    "title": "Jeu de multiplication ×",
+    "slug": "jeux_Multiplication",
+    "thumbnail": "/images/multi.png",
+    "description": "Entraîne-toi à multiplier comme un pro ! Résous les opérations et améliore tes réflexes mathématiques 🔢",
+    "categories": ["Apprentissage"],
+    "popular": true,
+    "lang": ["fr", "en"],
+    "gamePath": "/games/jeux_addition"
+  },
+  {
+    "id": 7,
+    "title": "Jeu de soustraction −",
+    "slug": "soustraction",
+    "thumbnail": "/images/soustraction.png",
+    "description": "Apprends à soustraire facilement avec des exercices ludiques ! Développe ta logique tout en t’amusant ➖",
+    "categories": ["Apprentissage"],
+    "popular": true,
+    "lang": ["fr", "en"],
+    "gamePath": "/games/jeux_addition"
+  },
+  {
+    "id": 8,
+    "title": "Puzzle de poussin 2",
+    "slug": "puzzle_poussin2",
+    "thumbnail": "/images/g2.png",
+    "description": "Assemble les pièces 🧩 du deuxième puzzle du poussin et découvre une nouvelle image pleine de douceur 🐥",
     "categories": ["Puzzle"],
     "popular": true,
-    "lang": "fr",
-    "gamePath": "/games/jeux_addition/index.html"
-    
-  }
+    "lang": ["fr", "en"],
+    "gamePath": "/games/puzzle_poussin2/index.html"
+  },
+  {
+    "id": 9,
+    "title": "Puzzle de la famille requin",
+    "slug": "puzzle_famille_requin",
+    "thumbnail": "/images/famille_requin.png",
+    "description": "Reconstitue le puzzle de la famille requin 🦈👨‍👩‍👧‍👦 et amuse-toi à retrouver chaque membre !",
+    "categories": ["Puzzle"],
+    "popular": true,
+    "lang": ["fr", "en"],
+    "gamePath": "/games/puzzle_famille_requin/index.html"
+  },
+  {
+    "id": 10,
+    "title": "Puzzle de Papi requin",
+    "slug": "puzzle_papi_requin",
+    "thumbnail": "/images/papi_requin.png",
+    "description": "Assemble les pièces 🧩 de Papi requin et découvre son grand sourire ! Un puzzle amusant pour petits explorateurs 🦈",
+    "categories": ["Puzzle"],
+    "popular": true,
+    "lang": ["fr", "en"],
+    "gamePath": "/games/puzzle_papi_requin/index.html"
+  },
+  {
+  "id": 11,
+  "title": "Coloriages à imprimer",
+  "slug": "coloriages_pdf",
+  "thumbnail": "/images/coloriage_pdf.png",
+  "description": "Télécharge et imprime nos jolis coloriages pour t’amuser à la maison 🎨 !",
+  "categories": ["Coloriage"],
+  "popular": true,
+  "lang": ["fr", "en"],
+  "gamePath": "/games/coloriages-pdf/index.html"
+}
+
 ]
