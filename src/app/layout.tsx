@@ -56,8 +56,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ff4081" />
-
-        {/* ✅ Code AdSense pour la vérification du site */}
+    
+        {/* ✅ Code AdSense pour la vérification du site et de validation */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9266179972849961"
+     crossOrigin="anonymous">
+     </script>
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9266179972849961"
